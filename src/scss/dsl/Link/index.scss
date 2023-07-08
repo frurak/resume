@@ -1,0 +1,18 @@
+
+@use "../../variables";
+
+.Link {
+  @include font-base;
+
+  color: variables.$gray-main;
+
+  list-style-type: none;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.--active {
+  }
+}

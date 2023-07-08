@@ -1,0 +1,111 @@
+
+$navbar-link-padding-y: 50px;
+$hamburger-animation-duration: 0.3s;
+
+.Navbar {
+  @include flex(row, center, space-between);
+  height: 100%;
+
+  &__list {
+    @include flex(row-reverse, center, flex-start);
+    gap: 2rem;
+
+    .Link {
+      @include flex(row, center, center);
+      @include h4();
+      height: $navigation-wrapper-height;
+
+      &.--active {
+        border-bottom: 1px solid $white;
+        opacity: 0.9;
+        transition: 0.2s ease-in-out;
+      }
+
+      &:hover {
+        border-bottom: 1px solid rgba($white, 0.3);
+        text-decoration: none;
+        opacity: 0.9;
+        cursor: pointer;
+      }
+
+      a {
+        @include flex(row, center, center);
+        height: 100%;
+      }
+    }
+  }
+
+  &__mark {
+    @include h4();
+    font-weight: $font-weight-light;
+
+    @include media-breakpoint-down(md) {
+      @include font-base();
+    }
+  }
+
+  &__mobile-toggler {
+    @include flex(column, flex-start, space-between);
+
+    width: rem(32px);
+    height: rem(16px);
+
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: $gray-main;
+      border-radius: 50px;
+    }
+
+    &.--open {
+      animation: toggleHamburger $hamburger-animation-duration ease-in-out both;
+
+      span {
+        transition: transform $hamburger-animation-duration ease-in-out $hamburger-animation-duration;
+        &:nth-of-type(1) {
+          transform: rotate(45deg);
+        }
+
+        &:nth-of-type(2) {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    &.--close {
+      animation: toggleHamburgerBack $hamburger-animation-duration ease-in-out both $hamburger-animation-duration;
+
+      span {
+        transition: transform $hamburger-animation-duration ease-in-out;
+        &:nth-of-type(1) {
+          transform: rotate(0deg);
+        }
+
+        &:nth-of-type(2) {
+          transform: rotate(0deg);
+        }
+      }
+    }
+  }
+}
+
+@keyframes toggleHamburger {
+  0% {
+    height: rem(16px);
+  }
+  100% {
+    height: rem(2px);
+  }
+}
+
+@keyframes toggleHamburgerBack {
+  0% {
+    height: rem(2px);
+  }
+  100% {
+    height: rem(16px);
+  }
+}

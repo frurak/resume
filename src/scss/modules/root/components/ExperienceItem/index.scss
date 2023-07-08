@@ -1,0 +1,68 @@
+
+@use "../../../../variables";
+
+.ExperienceItem {
+  @include flex(column, flex-start, flex-start);
+  gap: 2rem;
+
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(
+                    180deg,
+                    rgba(variables.$white, 0),
+                    rgba(variables.$white, 0.04)
+    );
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &__company {
+    text-transform: uppercase;
+  }
+
+  &__details {
+    @include flex(row, center, flex-start);
+
+    gap: 1rem;
+    color: variables.$gray-1;
+
+    .CustomHeading, .CustomParagraph {
+      @include font-base();
+    }
+  }
+
+  &__description {
+    @include h2();
+  }
+
+  &__toggler {
+    @include h4();
+
+    outline: none;
+    border: none;
+    background: none;
+    color: variables.$gray-main;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: .8;
+      transition: 0.2s ease-in-out;
+    }
+  }
+
+  hr {
+    margin-top: variables.$spacing-100;
+    margin-bottom: 0;
+    width: 100%;
+    color: variables.$gray-2;
+  }
+}

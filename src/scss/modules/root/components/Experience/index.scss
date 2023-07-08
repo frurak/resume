@@ -1,0 +1,7 @@
+
+@use "../../../../variables";
+
+.Experience {
+  @include flex(column, flex-start, flex-start);
+  gap: variables.$spacing-100;
+}

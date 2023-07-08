@@ -1,0 +1,94 @@
+
+// Fonts
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: 900;
+
+$font-family-sans-serif: 'Manrope', sans-serif;
+$font-family-serif: 'Manrope', sans-serif;
+$headings-font-family: 'Manrope', sans-serif;
+
+$h1-font-size: 4.375rem;
+$h1-font-weight: $font-weight-normal;
+$h1-line-height: 1.1;
+$h1-letter-spacing: 0;
+
+$h2-font-size: 2rem;
+$h2-font-weight: $font-weight-normal;
+$h2-line-height: 1.25;
+$h2-letter-spacing: 0;
+
+$h3-font-size: 1.5rem;
+$h3-font-weight: $font-weight-normal;
+$h3-line-height: 1.25;
+$h3-letter-spacing: 0;
+
+$h4-font-size: 1.25rem;
+$h4-font-weight: $font-weight-normal;
+$h4-line-height: 1.1;
+$h4-letter-spacing: 0;
+
+$h5-font-size: 1rem;
+$h5-font-weight: $font-weight-normal;
+$h5-line-height: 1.1;
+$h5-letter-spacing: 0;
+
+$h6-font-size: 1rem;
+$h6-font-weight: $font-weight-normal;
+$h6-line-height: 1.1;
+$h6-letter-spacing: 0;
+
+$base-font-size: 1rem;
+$base-font-weight: $font-weight-normal;
+$base-line-height: 1.5;
+$base-letter-spacing: 0;
+
+$smaller-font-size: 0.875rem;
+$smaller-font-weight: $font-weight-normal;
+$smaller-line-height: 1.5;
+$smaller-letter-spacing: 0;
+
+
+// Navigation
+$navigation-wrapper-height: 120px;
+$navigation-wrapper-height-mobile: 80px;
+
+// Project Colors
+$white: #FFFFFF;
+$black: #000000;
+$background-color: #01080A;
+$gray-main: #DDDDDD;
+$gray-1: #818181;
+$gray-2: #393939;
+
+// Spacing
+$spacing-200: 12.5rem;
+$spacing-140: 8.75rem;
+$spacing-100: 6.25rem;
+$spacing-80: 5rem;
+$spacing-64: 4rem;
+$spacing-48: 3rem;
+
+// Buttons
+$btn-default-radius: 0.9375rem;
+$btn-default-padding-y: 1.5625rem;
+$btn-default-padding-x: 2.5rem;
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
+);
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1180px,
+        xxl: 1440px
+) !default;
