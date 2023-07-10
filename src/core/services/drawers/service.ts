@@ -11,17 +11,21 @@ import {
 } from './contracts'
 
 export default class DrawersConnector implements IDrawersConnector {
+  protected _$defaultConfig: DrawerConfig
   protected _$registry: DrawersRegistry
   protected _$state!: DrawerStreamState
   protected _$stream: BehaviorSubject<DrawerStreamState>
 
-  constructor (registry: DrawersRegistry) {
+  constructor (registry: DrawersRegistry, defaultConfig: DrawerConfig) {
+    this._$defaultConfig = defaultConfig
     this._$registry = registry
     this._$stream = new BehaviorSubject<DrawerStreamState>({
       component: null,
       opened: false,
       payload: {},
-      config: {}
+      config: {
+        ...this._$defaultConfig
+      }
     })
 
     this._$stream.subscribe((state: DrawerStreamState) => {
@@ -72,7 +76,7 @@ export default class DrawersConnector implements IDrawersConnector {
       component: drawerName,
       opened: true,
       payload: payload ?? {},
-      config
+      config: { ...this._$defaultConfig, ...config }
     })
 
     DrawersConnector.lockScroll()
@@ -88,7 +92,7 @@ export default class DrawersConnector implements IDrawersConnector {
   /**
    * @inheritDoc
    */
-  public subscribe (callback: (open: DrawerStreamState) => any): void {
+  public subscribe (callback: (state: DrawerStreamState) => any): void {
     this._$stream.subscribe((state: DrawerStreamState) => callback(state))
   }
 
@@ -111,7 +115,10 @@ export default class DrawersConnector implements IDrawersConnector {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      window.scrollTo({
+        left: 0,
+        top: parseInt(scrollY || '0') * -1
+      });
     }
   }
 }

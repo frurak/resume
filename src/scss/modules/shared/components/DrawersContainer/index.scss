@@ -1,0 +1,85 @@
+
+.DrawerContainer {
+  position: fixed;
+  left: -100%;
+  top: $navigation-wrapper-height;
+
+  background-color: $gray-3;
+
+  height: calc(100vh - #{$navigation-wrapper-height});
+  width: 40vw;
+
+  animation: slideIn 0.3s ease-in-out both;
+
+  z-index: calc(#{$z-index-fixed} + 1);
+
+  @include flex(column, flex-start, flex-start);
+
+  @include media-breakpoint-down(lg) {
+    height: calc(100vh - #{$navigation-wrapper-height});
+    width: 100vw;
+  }
+
+  @include media-breakpoint-down(md) {
+    top: $navigation-wrapper-height-mobile;
+    height: calc(100vh - #{$navigation-wrapper-height-mobile});
+  }
+
+  &__top {
+    @include flex(row, flex-start, flex-end);
+    gap: 1rem;
+
+    width: 100%;
+
+    .close-icon {
+      width: auto;
+
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .drawer-heading {
+      min-width: 80%;
+      max-width: 80%;
+    }
+  }
+
+  &__inner {
+    width: 100%;
+  }
+
+  &.--full-height {
+    top: 0;
+    height: 100vh;
+  }
+
+  &.--with-heading {
+    gap: 1rem;
+
+    .DrawerContainer__top {
+      @include flex(row, flex-start, space-between);
+
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $gray-2;
+    }
+  }
+
+  &.--with-close-icon {
+    gap: 1rem;
+  }
+
+  &.--blurred {
+    @include blur(0.6, 0.6, 20px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}

@@ -3,7 +3,7 @@ import React from 'react'
 import BaseTemplate from '../../../templates/Base/Base.template'
 
 import { BrandingViewProps } from './Branding.contracts'
-import { useBrandingView } from './Branding.hooks'
+import { buildBrandingTemplate, useBrandingView } from './Branding.hooks'
 
 /**
  * @see useBrandingView
@@ -14,7 +14,9 @@ const BrandingView = (props: BrandingViewProps) => {
 
   const slots = {
     main: {
-      node: <div>MAIN</div>,
+      node: buildBrandingTemplate({
+        ...useBrandingView(props)
+      }),
       classNames: ['container']
     }
   }

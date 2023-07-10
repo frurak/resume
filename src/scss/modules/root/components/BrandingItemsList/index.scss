@@ -1,0 +1,11 @@
+
+.BrandingItemsList {
+  @include flex(row, flex-start, flex-start);
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: $spacing-140;
+
+  @include media-breakpoint-down(md) {
+    row-gap: $spacing-64;
+  }
+}

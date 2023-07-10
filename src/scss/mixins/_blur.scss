@@ -1,0 +1,9 @@
+
+@mixin blur($top: 1, $bottom: 0.7, $intensity: 10px) {
+  background: linear-gradient(
+                  180deg,
+                  rgba(32, 32, 32, $top),
+                  rgba(32, 32, 32, $bottom)
+  );
+  backdrop-filter: blur($intensity);
+}

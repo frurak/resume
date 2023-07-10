@@ -24,7 +24,7 @@ export const Experience = (props: ExperienceProps) => {
                                 description={ item.description }
                                 descriptionExpanded={ item.descriptionExpanded }
                                 roles={ item.roles }
-                                hasDivider={ index !== props.items.length - 1 } />
+                                hasDivider={ true } />
         ))
       }
     </div>

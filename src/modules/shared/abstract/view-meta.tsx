@@ -4,8 +4,11 @@ import { useMatches } from 'react-router-dom'
 import { routesRegistry } from '../../../core/router/routes.config'
 
 import { RouteConfig } from '../../root/contracts/routes.contracts'
+import { useSelector } from 'react-redux'
+import { AppReducers } from '../../../core/store/reducers'
+import { DeviceType } from '../store/contracts'
 
-export interface AbstractViewProvidesOutput {
+export interface AbstractViewProvidesOutput extends DeviceType {
   viewConfig?: RouteConfig
 }
 
@@ -16,5 +19,7 @@ export const useAbstractViewProvides = (): AbstractViewProvidesOutput => {
     []
   )
 
-  return { viewConfig }
+  const { isMobile, isTablet, isDesktop } = useSelector((state: AppReducers) => state.shared.device)
+
+  return { viewConfig, isMobile, isTablet, isDesktop }
 }

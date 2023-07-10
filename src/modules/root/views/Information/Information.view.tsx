@@ -14,7 +14,9 @@ const InformationView = (props: InformationViewProps) => {
 
   const slots = {
     main: {
-      node: buildInformationTemplate(props),
+      node: buildInformationTemplate({
+        ...useInformationView(props)
+      }),
       classNames: ['container']
     }
   }

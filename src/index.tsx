@@ -9,7 +9,6 @@ import App from './App';
 import { appConfig } from './config'
 import { bindAppContainerRegistry } from './config/container'
 import globalStore from './core/store/store'
-import DrawersWrapper from './modules/shared/components/DrawersWrapper/DrawersWrapper'
 
 
 const root = ReactDOM.createRoot(
@@ -25,8 +24,6 @@ export const createApp = () => {
       <React.StrictMode>
         <ReduxProvider store={ globalStore }>
           <App />
-
-          <DrawersWrapper />
         </ReduxProvider>
       </React.StrictMode>
     </Provider>

@@ -1,76 +1,88 @@
 
-@use "../variables";
+$lg-proportions: 0.7;
 
 @mixin h1 {
-  font-size: variables.$h1-font-size;
-  font-weight: variables.$h1-font-weight;
-  line-height: variables.$h1-line-height;
-  letter-spacing: variables.$h1-letter-spacing;
+  font-size: $h1-font-size;
+  font-weight: $h1-font-weight;
+  line-height: $h1-line-height;
+  letter-spacing: $h1-letter-spacing;
   margin: 0;
   padding: 0;
+
+  @include media-breakpoint-down(lg) {
+    font-size: calc(#{$lg-proportions} * #{$h1-font-size});
+  }
 }
 
 @mixin h2 {
-  font-size: variables.$h2-font-size;
-  font-weight: variables.$h2-font-weight;
-  line-height: variables.$h2-line-height;
-  letter-spacing: variables.$h2-letter-spacing;
+  font-size: $h2-font-size;
+  font-weight: $h2-font-weight;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-spacing;
   margin: 0;
   padding: 0;
+
+  @include media-breakpoint-down(lg) {
+    font-size: calc(#{$lg-proportions} * #{$h2-font-size});
+  }
 }
 
 @mixin h3 {
-  font-size: variables.$h3-font-size;
-  font-weight: variables.$h3-font-weight;
-  line-height: variables.$h3-line-height;
-  letter-spacing: variables.$h3-letter-spacing;
+  font-size: $h3-font-size;
+  font-weight: $h3-font-weight;
+  line-height: $h3-line-height;
+  letter-spacing: $h3-letter-spacing;
   margin: 0;
   padding: 0;
 }
 
 @mixin h4 {
-  font-size: variables.$h4-font-size;
-  font-weight: variables.$h4-font-weight;
-  line-height: variables.$h4-line-height;
-  letter-spacing: variables.$h4-letter-spacing;
+  font-size: $h4-font-size;
+  font-weight: $h4-font-weight;
+  line-height: $h4-line-height;
+  letter-spacing: $h4-letter-spacing;
   margin: 0;
   padding: 0;
 }
 
 @mixin h5 {
-  font-size: variables.$h5-font-size;
-  font-weight: variables.$h5-font-weight;
-  line-height: variables.$h5-line-height;
-  letter-spacing: variables.$h5-letter-spacing;
+  font-size: $h5-font-size;
+  font-weight: $h5-font-weight;
+  line-height: $h5-line-height;
+  letter-spacing: $h5-letter-spacing;
   margin: 0;
   padding: 0;
 }
 
 @mixin h6 {
-  font-size: variables.$h6-font-size;
-  font-weight: variables.$h6-font-weight;
-  line-height: variables.$h6-line-height;
-  letter-spacing: variables.$h6-letter-spacing;
+  font-size: $h6-font-size;
+  font-weight: $h6-font-weight;
+  line-height: $h6-line-height;
+  letter-spacing: $h6-letter-spacing;
   margin: 0;
   padding: 0;
 }
 
 @mixin font-base {
-  font-size: variables.$base-font-size;
-  font-weight: variables.$base-font-weight;
-  line-height: variables.$base-line-height;
-  letter-spacing: variables.$base-letter-spacing;
+  font-size: $base-font-size;
+  font-weight: $base-font-weight;
+  line-height: $base-line-height;
+  letter-spacing: $base-letter-spacing;
   margin: 0;
   padding: 0;
 }
 
 @mixin font-smaller {
-  font-size: variables.$smaller-font-size;
-  font-weight: variables.$smaller-font-weight;
-  line-height: variables.$smaller-line-height;
-  letter-spacing: variables.$smaller-letter-spacing;
+  font-size: $smaller-font-size;
+  font-weight: $smaller-font-weight;
+  line-height: $smaller-line-height;
+  letter-spacing: $smaller-letter-spacing;
   margin: 0;
   padding: 0;
+
+  @include media-breakpoint-down(md) {
+    font-size: 0.75rem;
+  }
 }
 
 @mixin uppercase {

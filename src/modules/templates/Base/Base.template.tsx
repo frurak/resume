@@ -1,10 +1,13 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-import Navbar from '../../root/components/Navbar/Navbar'
+import Navbar from '../../shared/components/Navbar/Navbar'
 
 import { BaseTemplateProps } from './Base.contracts'
 import { PAGE_DEFAULT_META_DESCRIPTION, PAGE_DEFAULT_META_TITLE } from '../../root/contracts/routes.contracts'
+import DrawersWrapper from '../../shared/components/DrawersWrapper/DrawersWrapper'
+import Footer from '../../shared/components/Footer/Footer'
+import { Outlet, useParams } from 'react-router-dom'
 
 /**
  * Base template
@@ -14,6 +17,8 @@ const BaseTemplate = (props: BaseTemplateProps) => {
   const mainSlot = props.slots.main
   const footerSlot = props.slots.footer
   const metaData = props.meta
+
+  const hasParams = Object.keys(useParams()).length > 0
 
   return (
     <div className="BaseTemplate">
@@ -25,26 +30,31 @@ const BaseTemplate = (props: BaseTemplateProps) => {
       <header className="BaseTemplate__navigation-wrapper container-fluid">
         <Navbar />
       </header>
-
       { headerSlot &&
         <div className={`BaseTemplate__header-slot ${headerSlot.classNames ? headerSlot.classNames.join(' ') : ''}`}>
           { headerSlot.node }
         </div>
       }
 
-      { mainSlot &&
-        <main className={`BaseTemplate__main-slot ${mainSlot.classNames ? mainSlot.classNames.join(' ') : ''}`}>
-          { mainSlot.node }
-        </main>
+      { hasParams
+        ? <Outlet />
+        : mainSlot &&
+          <main className={`BaseTemplate__main-slot ${mainSlot.classNames ? mainSlot.classNames.join(' ') : ''}`}>
+            { mainSlot.node }
+          </main>
       }
 
       { footerSlot &&
-        <div className="BaseTemplate__footer-wrapper container-fluid">
-          <footer className={`BaseTemplate__footer-slot ${footerSlot.classNames ? footerSlot.classNames.join(' ') : ''}`}>
-            { footerSlot.node }
-          </footer>
+        <div className={`BaseTemplate__footer-slot ${footerSlot.classNames ? footerSlot.classNames.join(' ') : ''}`}>
+          { footerSlot.node }
         </div>
       }
+
+      <div className="BaseTemplate__footer-wrapper container-fluid">
+        <Footer />
+      </div>
+
+      <DrawersWrapper />
     </div>
   )
 }

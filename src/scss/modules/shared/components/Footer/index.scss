@@ -1,0 +1,73 @@
+
+.Footer {
+  @include flex(column, center, center);
+  gap: 2rem;
+
+  padding: $spacing-64 0;
+
+  border-top: rem(1px) solid $gray-2;
+
+  @include media-breakpoint-down(md) {
+    gap: 4rem;
+  }
+
+  p, span, a {
+    color: $gray-main;
+  }
+
+  &__content {
+    @include flex(row, flex-start, space-between);
+    width: 100%;
+
+    &__linkedIn {
+      @include h4();
+
+      @include media-breakpoint-down(md) {
+        @include font-base();
+      }
+    }
+
+    &__contact {
+      @include flex(column, flex-end, center);
+      gap: rem(8px);
+
+      @include media-breakpoint-down(md) {
+        gap: rem(4px);
+      }
+
+      p, a {
+        @include h4();
+
+        @include media-breakpoint-down(md) {
+          @include font-base();
+        }
+      }
+    }
+  }
+
+  &__copyrights {
+    @include flex(row, flex-start, space-between);
+    width: 100%;
+
+    @include media-breakpoint-down(md) {
+      @include flex(column-reverse, flex-start, center);
+      gap: 1rem;
+    }
+
+    &__tech-info {
+      @include flex(row, center, flex-end);
+
+      @include media-breakpoint-down(md) {
+        display: unset;
+
+        .CustomLink, .CustomParagraph {
+          display: inline;
+        }
+      }
+    }
+
+    .CustomLink {
+      text-decoration: underline;
+    }
+  }
+}

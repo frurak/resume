@@ -1,0 +1,13 @@
+
+.BrandingElement {
+  margin-top: $spacing-200;
+  margin-bottom: $spacing-200;
+
+  min-height: 50vh;
+
+  @include media-breakpoint-down(md) {
+    margin: $spacing-140 0;
+
+    min-height: 30vh;
+  }
+}

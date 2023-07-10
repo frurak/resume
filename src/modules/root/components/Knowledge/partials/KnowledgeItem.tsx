@@ -23,7 +23,7 @@ const KnowledgeItem = (props: KnowledgeItemProps) => {
                              classNames={['KnowledgeItem__text-element h3']}
                              content={ element.content }
                              key={ index } />
-            : <div className="KnowledgeItem__element"
+            : <div className={`KnowledgeItem__element ${ !!element.alignment ? '--'+element.alignment : '' }`}
                    key={ index }>
                 { element.content }
               </div>

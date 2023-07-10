@@ -10,7 +10,7 @@ $hamburger-animation-duration: 0.3s;
     @include flex(row-reverse, center, flex-start);
     gap: 2rem;
 
-    .Link {
+    .CustomLink {
       @include flex(row, center, center);
       @include h4();
       height: $navigation-wrapper-height;

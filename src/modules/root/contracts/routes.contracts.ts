@@ -8,6 +8,7 @@ export interface RouteConfig {
   target?: string,
   label?: string
   meta?: RouteMetaData
+  children?: Array<RouteConfig>
 }
 
 export enum RouteTargetType {

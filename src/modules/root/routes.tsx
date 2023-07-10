@@ -5,6 +5,7 @@ import NotFoundView from './views/NotFound.view'
 import WebDesignView from './views/WebDesign/WebDesign.view'
 import WebDevelopmentView from './views/WebDevelopment/WebDevelopment.view'
 import { RouteConfig, RouteTargetType } from './contracts/routes.contracts'
+import BrandingElement from './views/BrandingElement/BrandingElement'
 
 export enum RouteName {
   Information = 'information',
@@ -32,7 +33,15 @@ export const rootRoutes: Array<RouteConfig> = [
     meta: {
       title: 'Branding',
       description: 'Filip Rurak | Branding'
-    }
+    },
+    children: [
+      {
+        path: ':brandingElementId',
+        name: `root.${RouteName.Branding}`,
+        element: <BrandingElement />,
+        targetType: RouteTargetType.Internal
+      }
+    ]
   },
   {
     path: '/web-design',

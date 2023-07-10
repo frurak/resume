@@ -1,0 +1,27 @@
+
+.FactsNumbers {
+  @include flex(row, center, center);
+  gap: $spacing-64;
+
+  width: 75%;
+  margin: 0 auto;
+  padding: $spacing-80 0;
+
+  @include media-breakpoint-down(md) {
+    @include flex(column, center, center);
+    gap: $spacing-48;
+
+    width: 100%;
+    padding: rem(24px) 0;
+  }
+
+  &__item {
+    @include flex(column, center, center);
+    gap: 1rem;
+    flex: 1;
+
+    .item-description {
+      color: $gray-1;
+    }
+  }
+}

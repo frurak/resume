@@ -5,21 +5,23 @@
   &__navigation-wrapper {
     height: $navigation-wrapper-height;
 
-    background: linear-gradient(
-      180deg,
-      rgba(32, 32, 32, 1),
-      rgba(32, 32, 32, 0.6)
-    );
-    backdrop-filter: blur(5px);
+    @include blur(0.7, 0.4);
 
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1001;
+    z-index: $z-index-fixed;
 
     @include media-breakpoint-down(md) {
-      height: $navigation-wrapper-height-mobile
+      height: $navigation-wrapper-height-mobile;
+
+      @include blur(0.6, 0.6);
     }
+  }
+
+  &__footer-wrapper {
+    //background: $gray-3;
+    @include blur(0, 1);
   }
 }

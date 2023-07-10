@@ -70,6 +70,11 @@ export enum OtherContextItemName {
   Sendinblue = 'sendinblue'
 }
 
+export enum ItemAlignment {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical'
+}
+
 export const toolsKnowledgeRegistry: Record<string, ToolData> = {
   [ToolName.Vue]: {
     content: <VueJs />,
@@ -82,6 +87,7 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     alt: 'Frontend developer | Web developer | React.js'
   },
   [ToolName.NextJs]: {
+    alignment: ItemAlignment.Horizontal,
     content: <NextJs />,
     context: KnowledgeContext.Coding,
     alt: 'Frontend developer | Web developer | Next.js'
@@ -112,16 +118,19 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     alt: 'Frontend developer | Web developer | Css'
   },
   [ToolName.NodeJs]: {
+    alignment: ItemAlignment.Horizontal,
     content: <NodeJs />,
     context: KnowledgeContext.Coding,
     alt: 'Fullstack developer | Web developer | Node.js'
   },
   [ToolName.Firebase]: {
+    alignment: ItemAlignment.Horizontal,
     content: <Firebase />,
     context: KnowledgeContext.Coding,
     alt: 'Frontend developer | Web developer | Firebase | Google Firebase'
   },
   [ToolName.Docker]: {
+    alignment: ItemAlignment.Horizontal,
     content: <Docker />,
     context: KnowledgeContext.Coding,
     alt: 'Frontend developer | Web developer | Docker'
@@ -132,6 +141,7 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     alt: 'Frontend developer | Web developer | GitHub'
   },
   [ToolName.Git]: {
+    alignment: ItemAlignment.Horizontal,
     content: <Git />,
     context: KnowledgeContext.Coding,
     alt: 'Frontend developer | Web developer | Git'
@@ -147,6 +157,7 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     alt: 'Frontend developer | Web developer | PHP Storm code editor'
   },
   [ToolName.Figma]: {
+    alignment: ItemAlignment.Horizontal,
     content: <Figma />,
     context: KnowledgeContext.Drawing,
     alt: 'Graphics Designer | Web Designer | UI | UX | Figma'

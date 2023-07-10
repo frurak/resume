@@ -3,7 +3,7 @@ import { Container } from 'inversify'
 
 import { DrawersConnectorKey } from '../core/services/drawers'
 import DrawersConnector from '../core/services/drawers/service'
-import { drawersRegistry } from './drawers'
+import { drawersDefaultConfig, drawersRegistry } from './drawers'
 import { firebaseConfig, FirebaseServiceKey, FirebaseService } from '../core/firebase'
 import { firebaseKey } from './firebase'
 import { UserAgentServiceKey } from '../core/services/user-agent'
@@ -19,7 +19,7 @@ export const bindAppContainerRegistry = (appConfig: any) => {
 
   container.bind(UserAgentServiceKey).toConstantValue(new UserAgentService(store.dispatch))
 
-  container.bind(DrawersConnectorKey).toConstantValue(new DrawersConnector(drawersRegistry))
+  container.bind(DrawersConnectorKey).toConstantValue(new DrawersConnector(drawersRegistry, drawersDefaultConfig))
 
   container.bind(FirebaseServiceKey).toConstantValue(new FirebaseService(firebaseConfig, appConfig[firebaseKey].availableCollections))
 

@@ -1,0 +1,111 @@
+
+$mac-window-radius: rem(10px);
+
+$content-padding-y: 1rem;
+$content-padding-x: rem(25px);
+$content-padding-y-mobile: 1rem;
+$content-padding-x-mobile: 1rem;
+
+$content-padding: $content-padding-y $content-padding-x;
+$content-padding-mobile: $content-padding-y-mobile $content-padding-x-mobile;
+
+.MacWindow {
+  width: 100%;
+  border-radius: $mac-window-radius;
+
+  box-shadow: 0px 100px 250px rgba($white, 0.1);
+
+  &__top {
+    min-height: rem(40px);
+    background-color: $black;
+
+    padding: rem(12px) $content-padding-x;
+
+    @include flex(row, center, space-between);
+    gap: rem(8px);
+
+    @include media-breakpoint-down(md) {
+      padding-left: $content-padding-x-mobile;
+      padding-right: $content-padding-x-mobile;
+    }
+
+    &__text {
+      @include font-smaller();
+      color: $gray-1;
+    }
+  }
+
+  &__content {
+    border-bottom-left-radius: $mac-window-radius;
+    border-bottom-right-radius: $mac-window-radius;
+    overflow: hidden;
+  }
+
+  &__fake-actions {
+    @include flex(row, center, center);
+    gap: rem(8px);
+
+    @include media-breakpoint-down(md) {
+      gap: rem(6px);
+    }
+  }
+
+  &__fake-action {
+    display: block;
+    width: rem(14px);
+    height: rem(14px);
+
+    background-color: white;
+    border-radius: 100%;
+
+    @include media-breakpoint-down(md) {
+      width: rem(12px);
+      height: rem(12px);
+    }
+
+    &:nth-of-type(1) {
+      background-color: $mac-red;
+    }
+
+    &:nth-of-type(2) {
+      background-color: $mac-yellow;
+    }
+
+    &:nth-of-type(3) {
+      background-color: $mac-green;
+    }
+  }
+
+  &.--dark {
+    background-color: $gray-3;
+    border: rem(3px) solid $gray-3;
+
+    .MacWindow__top {
+      border-top-left-radius: $mac-window-radius;
+      border-top-right-radius: $mac-window-radius;
+    }
+  }
+
+  &.--dark-reverse {
+    background-color: $black;
+    border: rem(3px) solid $gray-3;
+
+    .MacWindow__top {
+      background-color: $gray-3;
+    }
+  }
+
+  &.--light {
+
+  }
+
+  &.--content-padding {
+    .MacWindow__content {
+      padding: $content-padding;
+
+      @include media-breakpoint-down(md) {
+        padding: $content-padding-mobile;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react'
 
 import BaseTemplate from '../../../templates/Base/Base.template'
 
-import { useWebDevelopmentView } from './WebDevelopment.hooks'
+import { buildWebDevelopmentTemplate, useWebDevelopmentView } from './WebDevelopment.hooks'
 import { WebDevelopmentViewProps } from './WebDevelopment.contracts'
 
 /**
@@ -14,7 +14,9 @@ const WebDevelopmentView = (props: WebDevelopmentViewProps) => {
 
   const slots = {
     main: {
-      node: <div>WEB Development</div>,
+      node: buildWebDevelopmentTemplate({
+        ...useWebDevelopmentView(props)
+      }),
       classNames: ['container']
     }
   }

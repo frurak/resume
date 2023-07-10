@@ -1,0 +1,37 @@
+
+.BrandsExperience {
+  //margin-top: $spacing-140;
+  //
+  //@include media-breakpoint-down(md) {
+  //  margin-top: $spacing-80;
+  //}
+
+  &__heading {
+    margin-bottom: $spacing-80;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: $spacing-64;
+    }
+  }
+
+  &__items {
+    @include flex(inline-row, flex-start, flex-start);
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 3rem;
+
+    @include media-breakpoint-down(md) {
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .CustomLink, .CustomParagraph {
+      @include h3();
+      color: $gray-1;
+
+      @include media-breakpoint-down(md) {
+        @include font-base();
+      }
+    }
+  }
+}

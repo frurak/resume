@@ -6,7 +6,7 @@ export interface LinkProps {
   target?: string
   label?: string | React.ReactNode
   targetType?: string
-  onClick?: () => void
+  onClick?: (e?: any) => void
 }
 
 export interface UseLinkContentProvides {

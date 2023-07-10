@@ -13,9 +13,12 @@ export interface KnowledgeItemProps {
 
 export type KnowledgeItemType = 'icon' | 'text'
 
+export type KnowledgeItemAlignment = 'horizontal' | 'vertical'
+
 export type KnowledgeItemContext = 'coding' | 'drawing' | 'others' | 'analytics' | 'ecommerce' | 'marketing'
 
 export interface ToolData {
+  alignment?: KnowledgeItemAlignment
   content: string | React.ReactNode
   context: KnowledgeItemContext
   alt: string

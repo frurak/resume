@@ -28,7 +28,7 @@ export interface IDrawersConnector {
   /**
    * Subscribes to stream
    */
-  subscribe (callback: (open: DrawerStreamState) => any): void
+  subscribe (callback: (state: DrawerStreamState) => any): void
 }
 
 export enum DrawerName {
@@ -41,7 +41,12 @@ export interface DrawerPayload {
   [key: string]: any
 }
 
-export interface DrawerConfig {}
+export interface DrawerConfig {
+  blurred?: boolean
+  fullHeight?: boolean
+  hasCloseIcon?: boolean
+  heading?: string
+}
 
 export interface DrawerStreamState {
   component: string | null

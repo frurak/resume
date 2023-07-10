@@ -1,0 +1,25 @@
+
+.view-heading {
+  @include flex(row, flex-start, space-between);
+  width: 100%;
+  gap: 1rem;
+
+  @include media-breakpoint-down(md) {
+    @include flex(column, flex-start, flex-start);
+    gap: 3rem;
+  }
+}
+
+.view-double-text-layout {
+  @include flex(row, flex-start, space-between);
+  gap: 2rem;
+
+  @include media-breakpoint-down(md) {
+    @include flex(column, flex-start, flex-start);
+    gap: 1rem;
+  }
+
+  &:nth-child(1), &:nth-child(2) {
+    flex: 1;
+  }
+}

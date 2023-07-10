@@ -1,0 +1,65 @@
+
+.KnowledgeItem {
+  @include flex(row, flex-start, space-between);
+  width: 100%;
+
+  @include media-breakpoint-down(md) {
+    @include flex(column, flex-start, flex-start);
+    gap: 2rem;
+  }
+
+  &__context {
+    width: 20%;
+    color: $gray-1;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      color: $gray-main;
+    }
+  }
+
+  &__items {
+    @include flex(row, center, flex-start);
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 80%;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__element {
+    flex-basis: 9%;
+
+    @include media-breakpoint-down(md) {
+      flex-basis: 5%;
+    }
+
+    svg {
+      @include media-breakpoint-down(md) {
+        width: 3rem;
+        height: auto;
+      }
+    }
+
+    &.--horizontal {
+      svg {
+        @include media-breakpoint-down(md) {
+          width: 6rem;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  &__text-element {
+    @include media-breakpoint-down(md) {
+      @include h5();
+      color: $gray-1;
+    }
+  }
+}

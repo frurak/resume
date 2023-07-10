@@ -12,28 +12,31 @@ import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
 import Experience from '../../components/Experience/Experience'
 import Knowledge from '../../components/Knowledge/Knowledge'
 
-import { InformationViewProps } from './Information.contracts'
+import { InformationViewProps, UseInformationViewProvides } from './Information.contracts'
+import { useSelector } from 'react-redux'
+import { AppReducers } from '../../../../core/store/reducers'
+import { DeviceType } from '../../../shared/store/contracts'
 
 /**
  * Information view logic
  */
-export const useInformationView = (props: InformationViewProps) => {
-  const { viewConfig } = useAbstractViewProvides()
+export const useInformationView = (props: InformationViewProps): UseInformationViewProvides => {
+  const { viewConfig, isMobile, isTablet, isDesktop } = useAbstractViewProvides()
 
-  return { viewConfig }
+  return { viewConfig, isMobile, isTablet, isDesktop }
 }
 
 /**
  * Builds template for view
  */
-export const buildInformationTemplate = (props: InformationViewProps): React.ReactNode => {
+export const buildInformationTemplate = (props: UseInformationViewProvides): React.ReactNode => {
   const headerImageSrc = require('../../../../assets/img/me.jpg')
-
   // TODO: Remove me
   const experienceData = exampleExperience()
 
+  // TODO: Use eventBus
   const onReachMeBtnClick = () => {
-    console.log('click')
+    window.open('https://www.linkedin.com/in/filip-rurak-6a7685169/', '_blank')
   }
 
   const getAge = (): string => {
@@ -46,39 +49,39 @@ export const buildInformationTemplate = (props: InformationViewProps): React.Rea
 
   return (
     <div className="InformationView">
-      {/* Hero section */}
-      {/*<div className="InformationView__hero-section">*/}
-      {/*  <div className="InformationView__left">*/}
-      {/*    <CustomParagraph content="Learn quick, go beyond." classNames={['h2']} />*/}
+      {/*Hero section */}
+      <div className="InformationView__hero-section">
+        <div className="InformationView__left">
+          <CustomParagraph content="Learn quick, go beyond." classNames={['h2']} />
 
-      {/*    <div className="InformationView__info-header">*/}
-      {/*      <CustomHeading content={ `${ getAge() } yo.<br>Frontend Dev<br>& Graphics<br>Designer` }*/}
-      {/*                     level="h1"*/}
-      {/*                     renderAsHtml={ true }*/}
-      {/*                     classNames={['InformationView__heading']} />*/}
+          <div className="InformationView__info-header">
+            <CustomHeading content={ `${ getAge() } yo.<br>Frontend Dev<br>& Graphics<br>Designer` }
+                           level="h1"
+                           renderAsHtml={ true }
+                           classNames={['InformationView__heading']} />
 
-      {/*      <CustomParagraph content={ 'previously: Ecommerce Manager' }*/}
-      {/*                       classNames={['mt-5', 'InformationView__subheading']} />*/}
+            <CustomParagraph content={ 'previously: Ecommerce Manager' }
+                             classNames={['InformationView__subheading']} />
 
-      {/*      <CustomButton label={ 'Reach me out' }*/}
-      {/*                    classNames={['mt-5']}*/}
-      {/*                    onClick={ onReachMeBtnClick } />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
+            <CustomButton label={ 'Reach me out' }
+                          classNames={['mt-5', props.isMobile ? 'w-100' : '']}
+                          onClick={ onReachMeBtnClick } />
+          </div>
+        </div>
 
-      {/*  <div className="InformationView__right">*/}
-      {/*    <CustomImage src={ headerImageSrc } alt={ 'Filip Rurak' } />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+        <div className="InformationView__right">
+          <CustomImage src={ headerImageSrc } alt={ 'Filip Rurak' } />
+        </div>
+      </div>
 
       {/* Experience section */}
       <div className="InformationView__experience-section">
-        {/*<Experience { ...experienceData } />*/}
+        <Experience { ...experienceData } />
       </div>
 
       {/* Knowledge section */}
       <div className="InformationView__knowledge-section">
-        {/*<Knowledge />*/}
+        <Knowledge />
       </div>
     </div>
   )

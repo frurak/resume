@@ -1,13 +1,15 @@
 
 @use "../../variables";
 
-.Link {
+.CustomLink {
   @include font-base;
 
   color: variables.$gray-main;
 
   list-style-type: none;
   text-decoration: none;
+
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;

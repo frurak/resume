@@ -1,0 +1,14 @@
+
+.BrandingView {
+  margin-top: $spacing-200;
+  margin-bottom: $spacing-200;
+
+  @include flex(column, flex-start, center);
+  gap: $spacing-140;
+
+  @include media-breakpoint-down(md) {
+    margin: $spacing-140 0 $spacing-80 0;
+    gap: $spacing-80;
+  }
+
+}

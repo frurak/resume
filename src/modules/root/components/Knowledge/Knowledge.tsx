@@ -15,7 +15,7 @@ const Knowledge = (props: KnowledgeProps) => {
 
   return (
     <div className="Knowledge">
-      <CustomHeading content={'Practical<br>stack & knowledge'} renderAsHtml={ true } classNames={['h1']} />
+      <CustomHeading content={'Practical<br>stack & knowledge'} renderAsHtml={ true } classNames={['Knowledge__heading h1']} />
 
       <KnowledgeItem content={ createKnowledgeContextItems(KnowledgeContext.Coding) } heading="Coding" />
       <KnowledgeItem content={ createKnowledgeContextItems(KnowledgeContext.Drawing) } heading="Drawing" />

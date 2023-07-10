@@ -1,0 +1,144 @@
+
+$image-wrapper-padding: 1.5rem;
+$image-wrapper-padding-mobile: 1rem;
+
+.BrandingItem {
+  flex-basis: calc(50% - #{calc(1rem / 2)});
+
+  @include media-breakpoint-down(md) {
+    flex-basis: 100%;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:nth-child(odd) {
+    .BrandingItem__image-wrapper {
+      box-shadow: -100px 80px 200px rgba($white, 0.08);
+
+      @include media-breakpoint-down(md) {
+        box-shadow: 0 0 rem(200px) rgba($white, 0.1);
+      }
+    }
+  }
+
+  &:nth-child(even) {
+    .BrandingItem__image-wrapper {
+      box-shadow: 100px -80px 200px rgba($white, 0.08);
+
+      @include media-breakpoint-down(md) {
+        box-shadow: 0 0 rem(200px) rgba($white, 0.1);
+      }
+    }
+  }
+
+  &__image-wrapper {
+    overflow: hidden;
+    padding: $image-wrapper-padding;
+
+    border: rem(1px) solid $gray-3;
+
+    @include media-breakpoint-down(md) {
+      padding: $image-wrapper-padding-mobile;
+
+      border-color: rgba($gray-3, .7);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+
+  &__content-wrapper {
+    @include flex(column, flex-start, flex-start);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  &__captions {
+    @include flex(row, center, flex-start);
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @include media-breakpoint-down(md) {
+      @include flex(column, flex-start, flex-start);
+      gap: rem(8px);
+    }
+  }
+
+  .caption-details {
+    color: $gray-1;
+
+    @include media-breakpoint-down(md) {
+      @include font-smaller();
+    }
+  }
+
+  &.--paged {
+    .BrandingItem__content-wrapper {
+      @include flex(column, flex-start, flex-start);
+    }
+
+    .paged-label {
+      @include font-smaller();
+      font-weight: $font-weight-bolder;
+      text-transform: uppercase;
+
+      border-radius: rem(100px);
+      background: $gray-main;
+      padding: rem(4px) rem(14px);
+
+      color: $gray-1;
+
+      @include media-breakpoint-down(md) {
+        top: $image-wrapper-padding-mobile;
+        left: $image-wrapper-padding-mobile;
+        background: $white;
+      }
+    }
+
+    &:hover {
+      &:nth-child(odd) {
+        .BrandingItem__image-wrapper {
+          transition: 0.3s ease-in-out;
+
+          box-shadow: -100px 80px 200px rgba($white, 0.07);
+
+          @include media-breakpoint-down(md) {
+            box-shadow: 0 0 rem(200px) rgba($white, 0.1);
+          }
+        }
+      }
+
+      &:nth-child(even) {
+        transition: 0.2s ease-in-out;
+
+        .BrandingItem__image-wrapper {
+          box-shadow: 100px -80px 200px rgba($white, 0.07);
+
+          @include media-breakpoint-down(md) {
+            box-shadow: 0 0 rem(200px) rgba($white, 0.1);
+          }
+        }
+      }
+
+      .BrandingItem__image-wrapper {
+        @include media-breakpoint-up(md) {
+          transition: 0.2s ease-in-out;
+          border-color: rgba($gray-2, .65);
+        }
+      }
+
+      .paged-label {
+        @include media-breakpoint-up(md) {
+          transition: 0.2s ease-in-out;
+          background: $white;
+        }
+      }
+    }
+  }
+}

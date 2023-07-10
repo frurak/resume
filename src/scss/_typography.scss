@@ -26,3 +26,7 @@ h6, .h6 {
 p, a {
   @include font-base();
 }
+
+.justify {
+  text-align: justify;
+}

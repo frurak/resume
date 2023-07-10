@@ -15,15 +15,15 @@ const CustomLink = (props: LinkProps) => {
     props.target && props.label &&
       props.targetType === RouteTargetType.Internal
         ? <NavLink to={ props.target }
-                   onClick={props.onClick}
-                   className={ `Link ${ props.isActive ? '--active' : customClasses }` }>
+                   onClick={ props.onClick }
+                   className={ `CustomLink ${ props.isActive ? '--active' : customClasses }` }>
             { props.label }
           </NavLink>
 
         : <a href={ props.target }
              target="_blank"
-             onClick={props.onClick}
-             className={ `Link ${ props.isActive ? '--active' : customClasses }` }>
+             onClick={ props.onClick }
+             className={ `CustomLink ${ props.isActive ? '--active' : customClasses }` }>
             { props.label }
           </a>
   );
