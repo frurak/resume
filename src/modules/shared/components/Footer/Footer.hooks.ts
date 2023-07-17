@@ -1,8 +1,10 @@
+import { LINKEDIN_PROFILE_TARGET_URL } from '../../helpers/redirect-linkedin'
+
 import { FooterProps, UseFooterContentProvides } from './Footer.contracts'
 
 export const useFooter = (props: FooterProps): UseFooterContentProvides => {
   const codebaseTarget = 'https://github.com/frurak/resume'
-  const meLinkedInTarget = 'https://www.linkedin.com/in/filip-rurak-6a7685169/'
+  const meLinkedInTarget = LINKEDIN_PROFILE_TARGET_URL
 
   const requestEmail = (e?: Event, to?: string): void => {
     if (typeof to === 'undefined') {

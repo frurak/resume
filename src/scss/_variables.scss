@@ -27,7 +27,7 @@ $h3-letter-spacing: 0;
 
 $h4-font-size: 1.25rem;
 $h4-font-weight: $font-weight-normal;
-$h4-line-height: 1.1;
+$h4-line-height: 1.25;
 $h4-letter-spacing: 0;
 
 $h5-font-size: 1rem;
@@ -69,20 +69,22 @@ $mac-yellow: #F3BF4F;
 $mac-green: #61C554;
 
 // Spacing
+$spacing-240: 15rem;
 $spacing-200: 12.5rem;
 $spacing-140: 8.75rem;
 $spacing-100: 6.25rem;
 $spacing-80: 5rem;
 $spacing-64: 4rem;
 $spacing-48: 3rem;
+$spacing-32: 2rem;
 
 // Buttons
 $btn-default-radius: 0.9375rem;
 $btn-default-padding-y: 1.5625rem;
 $btn-default-padding-x: 2.5rem;
 
-$btn-default-padding-y-mobile: 1.5rem;
-$btn-default-padding-x-mobile: 2rem;
+$btn-default-padding-y-mobile: 1rem;
+$btn-default-padding-x-mobile: 1.5rem;
 
 
 $container-max-widths: (

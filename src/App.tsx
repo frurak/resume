@@ -13,18 +13,21 @@ function App() {
   /** User Agent Service */
   const userAgentService: IUserAgentService = useInjection(UserAgentServiceKey)
 
+  const setUserAgentDevice = () => {
+    userAgentService.setDevice()
+  }
+
   useEffect(() => {
     const fetchCollection = async () => {
       const response = await firebaseService.getDocumentsByCollectionName(Collection.Test)
     }
 
-    const setUserAgentDevice = () => {
-      userAgentService.setDevice()
-    }
-
     fetchCollection()
-    setUserAgentDevice()
   }, [])
+
+  // NOTE: setting device is triggered outside useEffect hook
+  // because some components get wrong device in theirs hooks.
+  setUserAgentDevice()
 
   return (
     <RouterProvider router={router} />

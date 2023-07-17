@@ -2,7 +2,7 @@ import React from 'react'
 
 import BaseTemplate from '../../../templates/Base/Base.template'
 
-import { useWebDesignView } from './WebDesign.hooks'
+import { buildWebDesignTemplate, useWebDesignView } from './WebDesign.hooks'
 import { WebDesignViewProps } from './WebDesign.contracts'
 
 /**
@@ -14,8 +14,10 @@ const WebDesignView = (props: WebDesignViewProps) => {
 
   const slots = {
     main: {
-      node: <div>WEB DESIGN</div>,
-      classNames: ['container']
+      node: buildWebDesignTemplate({
+        ...useWebDesignView(props)
+      }),
+      classNames: []
     }
   }
 

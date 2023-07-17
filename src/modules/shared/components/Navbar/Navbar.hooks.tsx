@@ -1,26 +1,34 @@
 import { NavbarProps } from 'react-bootstrap'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useMatches } from 'react-router-dom'
+import { useInjection } from 'inversify-react'
 
+import { AppReducers } from '../../../../core/store/reducers'
+import { DrawerName, DrawersConnectorKey, IDrawersConnector } from '../../../../core/services/drawers'
+import { EventbusType, IEventBus } from '../../../../core/services/event-bus'
 import { routesRegistry } from '../../../../core/router/routes.config'
 
 import { LinkProps } from '../../../dsl/Link'
-
 import { RouteConfig, RouteTargetType } from '../../../root/contracts/routes.contracts'
-import { navbarRoutesRegistry } from './Navbar.config'
-import { useMatches } from 'react-router-dom'
-import { DrawerName, DrawersConnectorKey, IDrawersConnector } from '../../../../core/services/drawers'
-import { useInjection } from 'inversify-react'
-import { UseNavbarContentProvides } from './Navbar.contracts'
-import { useSelector } from 'react-redux'
-import { AppReducers } from '../../../../core/store/reducers'
+
 import { MenuDrawerPayload } from '../MenuDrawer'
+import { navbarRoutesRegistry } from './Navbar.config'
+import { UseNavbarContentProvides } from './Navbar.contracts'
 
 /**
  * Navbar component logic
  */
 export const useNavbar = (props: NavbarProps): UseNavbarContentProvides => {
-  /** Drawers Connector */
+  /**
+   * @private
+   */
   const _drawersConnector: IDrawersConnector = useInjection(DrawersConnectorKey)
+
+  /**
+   * @private
+   */
+  const _eventBus: IEventBus = useInjection(EventbusType)
 
   const { isMobile, isTablet, isDesktop } = useSelector((state: AppReducers) => state.shared.device)
 
@@ -31,7 +39,7 @@ export const useNavbar = (props: NavbarProps): UseNavbarContentProvides => {
   const [hasBeenOpened, setHasBeenOpened] = useState(false)
 
   const toggleMenuOpen = (): void => {
-    setHasBeenOpened(prevState => true)
+    setHasBeenOpened(true)
 
     if (!isMenuOpen) {
       _drawersConnector.open(
@@ -77,6 +85,14 @@ export const useNavbar = (props: NavbarProps): UseNavbarContentProvides => {
       navLinks: navLinks.map((link) => mapToLinkProps(link))
     }
   }
+
+  useEffect(() => {
+    if (_eventBus) {
+      _eventBus.$watch('app:navbar-toggle-close', () => {
+        setIsMenuOpen(false)
+      })
+    }
+  }, [])
 
   return { isMobile, isTablet, isDesktop, isMenuOpen, hasBeenOpened, navLinks, mapToLinkProps, toggleMenuOpen }
 }

@@ -15,7 +15,7 @@ export const CustomButton = (props: ButtonProps) => {
             className={ `CustomButton ${classNames.join(' ')}` }
             disabled={ props.isDisabled }
             onClick={ props.onClick }>
-      { props.label }
+      <span className="CustomButton__text">{ props.label }</span>
       { hasIcon && <span className="CustomButton__icon"><ArrowIcon /></span>}
     </button>
   )

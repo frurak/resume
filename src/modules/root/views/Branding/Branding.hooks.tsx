@@ -3,13 +3,14 @@ import React from 'react'
 
 import { exampleBranding, exampleBrandingBrandsExperienceItems } from '../../../../dev-utils/faker/branding.faker'
 
+import CustomButton from '../../../dsl/Button/Button'
 import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
 import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
 
 import BrandingItemsList from '../../components/BrandingItemsList/BrandingItemsList'
 
 import { BrandingViewProps, UseBrandingViewProvides } from './Branding.contracts'
-import CustomButton from '../../../dsl/Button/Button'
 
 /**
  * Branding view logic
@@ -31,9 +32,10 @@ export const useBrandingView = (props: BrandingViewProps): UseBrandingViewProvid
 export const buildBrandingTemplate = (props: UseBrandingViewProvides): React.ReactNode => {
   const shouldRenderList = Array.isArray(props.brandingItemsData.items) && props.brandingItemsData.items.length > 0
 
-  // TODO: Use eventBus
   const onReachMeBtnClick = () => {
-    window.open('https://www.linkedin.com/in/filip-rurak-6a7685169/', '_blank')
+    if (props.eventBus) {
+      props.eventBus.$on(REDIRECT_LINKED_IN_EVENT, null)
+    }
   }
 
   return (
@@ -44,7 +46,8 @@ export const buildBrandingTemplate = (props: UseBrandingViewProvides): React.Rea
                     classNames={['mt-5', props.isMobile ? 'w-100' : '']}
                     onClick={ onReachMeBtnClick } />
 
-      <BrandsExperience heading="Brands Experience" items={ props.brandsExperienceItems } />
+      <BrandsExperience heading="Brands Experience"
+                        items={ props.brandsExperienceItems } />
     </div>
   )
 }

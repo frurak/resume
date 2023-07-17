@@ -17,6 +17,7 @@ import FactsNumbers from '../../components/FactsNumbers/FactsNumbers'
 
 import { UseWebDevelopmentViewContentProvides, WebDevelopmentViewProps } from './WebDevelopment.contracts'
 import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
 
 /**
  * Web Development view logic
@@ -28,9 +29,10 @@ export const useWebDevelopmentView = (props: WebDevelopmentViewProps): UseWebDev
 }
 
 export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentProvides) => {
-  // TODO: Use eventBus
   const onReachMeBtnClick = () => {
-    window.open('https://www.linkedin.com/in/filip-rurak-6a7685169/', '_blank')
+    if (props.eventBus) {
+      props.eventBus.$on(REDIRECT_LINKED_IN_EVENT, null)
+    }
   }
 
   // TODO: Remove me
@@ -71,7 +73,8 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
       {/*Frontend section*/}
       <div className="WebDevelopmentView__frontend-section">
         <div className="view-heading">
-          <CustomHeading content="Frontend Web Developer" classNames={['h1']} />
+          <CustomHeading content="Frontend Web Developer"
+                         classNames={['h1']} />
           <CustomButton label={ 'Reach me out' }
                         classNames={[props.isMobile ? 'w-100' : '']}
                         onClick={ onReachMeBtnClick } />
@@ -90,7 +93,9 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
       {/*Ecommerce section*/}
       <div className="WebDevelopmentView__ecommerce-section">
         <div className="view-heading">
-          <CustomHeading content="Ecommerce<br/>& Content Management" renderAsHtml={ true } classNames={['h1']} />
+          <CustomHeading content="Ecommerce<br/>& Content Management"
+                         renderAsHtml={ true }
+                         classNames={['h1']} />
         </div>
 
         <div className={`view-double-text-layout ${ props.isDesktop || props.isTablet ? 'justify' : '' }`}>
@@ -98,14 +103,16 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
           <CustomParagraph content={ frontendText2 } />
         </div>
 
-        <MacWindow content={ <FactsNumbers { ...facts } /> } theme={ MacWindowTheme.DarkReverse } />
+        <MacWindow content={ <FactsNumbers { ...facts } /> }
+                   theme={ MacWindowTheme.DarkReverse } />
       </div>
 
       {/*Facts section*/}
       <div className="WebDevelopmentView__facts-section"></div>
 
       {/*Brands Experience section*/}
-      <BrandsExperience heading="Brands Experience" items={ brandsExperienceItems } />
+      <BrandsExperience heading="Brands Experience"
+                        items={ brandsExperienceItems } />
     </div>
   )
 }

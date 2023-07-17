@@ -18,12 +18,14 @@ const CustomImage = (props: ImageProps) => {
                        alt={ props.alt ?? undefined }
                        src={ props.src }
                        height={ height }
-                       width={ width } />
+                       width={ width }
+                       style={{ ...props.style }} />
       : <img className={ `CustomImage ${ classNames }` }
              alt={ props.alt ?? undefined }
              src={ props.src }
              height={ height }
-             width={ width } />
+             width={ width }
+             style={{ ...props.style }}/>
   )
 }
 

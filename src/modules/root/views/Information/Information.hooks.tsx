@@ -16,6 +16,7 @@ import { InformationViewProps, UseInformationViewProvides } from './Information.
 import { useSelector } from 'react-redux'
 import { AppReducers } from '../../../../core/store/reducers'
 import { DeviceType } from '../../../shared/store/contracts'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
 
 /**
  * Information view logic
@@ -34,9 +35,10 @@ export const buildInformationTemplate = (props: UseInformationViewProvides): Rea
   // TODO: Remove me
   const experienceData = exampleExperience()
 
-  // TODO: Use eventBus
   const onReachMeBtnClick = () => {
-    window.open('https://www.linkedin.com/in/filip-rurak-6a7685169/', '_blank')
+    if (props.eventBus) {
+      props.eventBus.$on(REDIRECT_LINKED_IN_EVENT, null)
+    }
   }
 
   const getAge = (): string => {

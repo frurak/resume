@@ -14,10 +14,19 @@
 
   @include media-breakpoint-down(md) {
     padding: $btn-default-padding-y-mobile $btn-default-padding-x-mobile;
+
+    font-size: 1rem;
+
+    @include flex(row, center, center);
+    flex-wrap: nowrap;
   }
 
   svg {
     margin-left: 1rem;
+
+    @include media-breakpoint-down(md) {
+      width: rem(25px);
+    }
   }
 
   &:hover {
@@ -34,6 +43,12 @@
       path {
         stroke: $white;
       }
+    }
+  }
+
+  &__text {
+    @include media-breakpoint-down(md) {
+      white-space: nowrap;
     }
   }
 }

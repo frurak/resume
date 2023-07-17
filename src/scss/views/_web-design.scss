@@ -1,0 +1,200 @@
+
+.WebDesignView {
+  margin-top: $spacing-200;
+  margin-bottom: $spacing-200;
+
+  @include flex(column, flex-start, center);
+  gap: $spacing-100;
+
+  @include media-breakpoint-down(md) {
+    margin: $spacing-140 0 $spacing-80 0;
+    gap: $spacing-64;
+  }
+
+  &__design-intro-section {
+    @include flex(column, flex-start, flex-start);
+    width: 100%;
+    gap: $spacing-100;
+
+    @include media-breakpoint-down(md) {
+      gap: $spacing-64;
+    }
+  }
+
+  &__mobiles-carousel-section {
+    margin: $spacing-80 0;
+
+    @include media-breakpoint-down(md) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  &__carousel-mockups-section {
+    @include flex(row, center, flex-start);
+    width: 100%;
+    height: 100%;
+    min-height: rem(800px);
+
+    background: linear-gradient(150deg, rgba(#313131, 1), rgba($gray-3, 1));
+    border-radius: rem(45px);
+
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    @include media-breakpoint-down(xxl) {
+      min-height: rem(700px);
+    }
+
+    @include media-breakpoint-down(xl) {
+      min-height: rem(600px);
+    }
+
+    @include media-breakpoint-down(lg) {
+      min-height: rem(500px);
+    }
+
+    @include media-breakpoint-down(md) {
+      min-height: rem(700px);
+      border-radius: 0;
+    }
+
+    .carousel-devices-wrapper {
+      transform: translateY(rem(110px));
+
+      .Device {
+      }
+    }
+
+    .carousel-devices-track {
+      width: 100%;
+      height: 100%;
+
+      @include flex(row, center, flex-start);
+      overflow-y: hidden;
+
+      transition: 0.5s ease-in-out;
+    }
+
+    .Device {
+      box-shadow: 0 rem(80px) rem(100px) rgba(#000, 0.3);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 10%;
+
+      background: linear-gradient(rgba(#212121, 0), rgba(#212121, .6));
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      width: rem(800px);
+      height: rem(800px);
+      border-radius: 100%;
+      filter: blur(70px);
+
+      background: linear-gradient(rgba(#505050, 0.6), rgba(#202020, .4));
+
+      position: absolute;
+      top: rem(-50px);
+      left: 40%;
+      z-index: 0;
+    }
+
+    .carousel-navigation {
+      position: absolute;
+      right: rem(50px);
+      top: rem(50px);
+
+      @include flex(row, center, flex-end);
+      gap: 2rem;
+
+      @include media-breakpoint-down(lg) {
+        right: rem(32px);
+        top: rem(32px);
+        gap: 1.4rem;
+      }
+
+      .navi-arrow {
+        cursor: pointer;
+
+        svg {
+          transition: 0.2s ease-in-out;
+
+          @include media-breakpoint-down(lg) {
+            width: 2.75rem;
+            height: 2.75rem;
+          }
+        }
+
+        &-prev {
+          transform: rotate(180deg);
+
+          svg {
+            box-shadow: rem(-3px) rem(-5px) rem(7px) rgba(#000, 0.3);
+            border-radius: 100%;
+          }
+
+          &:hover {
+            svg {
+              box-shadow: rem(-3px) rem(-5px) rem(15px) rgba(#000, 0.45);
+            }
+          }
+        }
+
+        &-next {
+          svg {
+            box-shadow: rem(3px) rem(5px) rem(7px) rgba(#000, 0.3);
+            border-radius: 100%;
+          }
+
+          &:hover {
+            svg {
+              box-shadow: rem(3px) rem(5px) rem(15px) rgba(#000, 0.45);
+            }
+          }
+        }
+
+        &.--disabled {
+          pointer-events: none;
+
+          svg rect {
+            fill: $gray-2;
+          }
+        }
+      }
+    }
+
+    &.--single-el-carousel {
+      min-height: unset;
+      overflow: unset;
+      height: auto;
+
+      padding: $spacing-64 0;
+
+      &::before, &::after {
+        display: none;
+      }
+
+      .DeviceCarousel {
+        .carousel-devices-wrapper {
+          transform: unset;
+
+          .Device {
+            box-shadow: unset;
+          }
+        }
+      }
+    }
+  }
+}

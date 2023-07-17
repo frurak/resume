@@ -9,6 +9,8 @@ import { firebaseKey } from './firebase'
 import { UserAgentServiceKey } from '../core/services/user-agent'
 import UserAgentService from '../core/services/user-agent/service'
 import store from '../core/store/store'
+import { EventbusType } from '../core/services/event-bus'
+import EventBus from '../core/services/event-bus/service'
 
 /**
  * Binds Inversify container
@@ -16,6 +18,8 @@ import store from '../core/store/store'
  */
 export const bindAppContainerRegistry = (appConfig: any) => {
   const container = new Container()
+
+  container.bind(EventbusType).toConstantValue(new EventBus())
 
   container.bind(UserAgentServiceKey).toConstantValue(new UserAgentService(store.dispatch))
 

@@ -6,6 +6,7 @@ export interface ImageProps {
   height?: number
   width?: number
   src: string
+  style?: Record<string, string | number>
 }
 
 export interface UseImageContentProvides {

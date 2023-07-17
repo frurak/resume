@@ -14,7 +14,7 @@ const DrawerContainer = (props: DrawerContainerProps) => {
   const { isFullHeight, hasHeading, hasCloseIcon, close, getDrawerClasses } = useDrawerContainer(props)
 
   return (
-    <div className={`DrawerContainer container ${ getDrawerClasses() }`}>
+    <div className={`DrawerContainer container-fluid ${ getDrawerClasses() }`}>
       <div className="DrawerContainer__top container">
         { hasHeading && <CustomParagraph content={ props.config.heading as string } classNames={['drawer-heading']} /> }
 
