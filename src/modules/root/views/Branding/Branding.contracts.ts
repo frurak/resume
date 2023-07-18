@@ -1,12 +1,15 @@
-import { DeviceType } from '../../../shared/store/contracts'
-import { AbstractViewProvidesOutput } from '../../../shared/abstract/view-meta'
-import { BrandExperienceItemData } from '../../../shared/components/BrandsExperience'
 
-import { BrandingItemsListProps } from '../../components/BrandingItemsList'
+import { IEventBus } from '../../../../core/services/event-bus'
+
+import { DeviceType } from '../../../shared/store/contracts'
+import { FirebaseDocuments } from '../../../shared/helpers/firebase-get-document'
+
+import { BrandingItemData } from '../../components/BrandingItemsList'
 
 export interface BrandingViewProps {}
 
-export interface UseBrandingViewProvides extends DeviceType, AbstractViewProvidesOutput {
-  brandingItemsData: BrandingItemsListProps
-  brandsExperienceItems: Array<BrandExperienceItemData>
+export interface BuildBrandingTemplateProps extends DeviceType {
+  eventBus?: IEventBus
+  experienceItems: any[]
+  getPageContent: () => FirebaseDocuments<Array<BrandingItemData>>
 }

@@ -16,4 +16,9 @@ const reducers = {
   }
 }
 
+export enum Namespace {
+  Root = 'root',
+  Shared = 'shared'
+}
+
 export default reducers

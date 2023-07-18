@@ -17,7 +17,7 @@ const BrandingItem = (props: BrandingItemData) => {
                     label={
                       <>
                         <div className="BrandingItem__image-wrapper">
-                          <CustomImage src={props.image} />
+                          <CustomImage src={ props.image } alt={ props.caption } />
                         </div>
                         <div className="BrandingItem__content-wrapper">
                           {/*<span className="paged-label">Click for details</span>*/}

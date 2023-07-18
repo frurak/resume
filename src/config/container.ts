@@ -25,7 +25,7 @@ export const bindAppContainerRegistry = (appConfig: any) => {
 
   container.bind(DrawersConnectorKey).toConstantValue(new DrawersConnector(drawersRegistry, drawersDefaultConfig))
 
-  container.bind(FirebaseServiceKey).toConstantValue(new FirebaseService(firebaseConfig, appConfig[firebaseKey].availableCollections))
+  container.bind(FirebaseServiceKey).toConstantValue(new FirebaseService(firebaseConfig, appConfig[firebaseKey], store))
 
   return container
 }

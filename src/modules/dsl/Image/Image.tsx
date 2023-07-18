@@ -14,18 +14,23 @@ const CustomImage = (props: ImageProps) => {
 
   return (
     isLazy
-      ? <LazyLoadImage className={ `CustomImage ${ classNames }` }
-                       alt={ props.alt ?? undefined }
-                       src={ props.src }
-                       height={ height }
-                       width={ width }
-                       style={{ ...props.style }} />
-      : <img className={ `CustomImage ${ classNames }` }
-             alt={ props.alt ?? undefined }
-             src={ props.src }
-             height={ height }
-             width={ width }
-             style={{ ...props.style }}/>
+      ? !!props.src && props.src.length > 0
+        ? <LazyLoadImage className={ `CustomImage ${ classNames }` }
+                         alt={ props.alt ?? undefined }
+                         src={ props.src }
+                         height={ height }
+                         width={ width }
+                         style={{ ...props.style }} />
+        : <></>
+
+      : !!props.src && props.src.length > 0
+        ? <img className={ `CustomImage ${ classNames }` }
+               alt={ props.alt ?? undefined }
+               src={ props.src }
+               height={ height }
+               width={ width }
+               style={{ ...props.style }} />
+        : <></>
   )
 }
 

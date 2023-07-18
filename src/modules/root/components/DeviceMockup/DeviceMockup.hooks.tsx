@@ -3,7 +3,7 @@ import { useInjection } from 'inversify-react'
 
 import { DEVICE_BACKGROUND_SELECTOR } from '../../../shared/components/Device/Device'
 import { EventbusType, IEventBus } from '../../../../core/services/event-bus'
-import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
 import { ScrollableOptions, ScrollableSpeed } from '../../../shared/components/Device'
 import { useAbstractDeviceContentProvides } from '../../../shared/abstract/device'
 

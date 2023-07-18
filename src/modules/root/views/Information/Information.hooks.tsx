@@ -7,16 +7,13 @@ import CustomButton from '../../../dsl/Button/Button'
 import CustomHeading from '../../../dsl/Heading/Heading'
 import CustomImage from '../../../dsl/Image/Image'
 import CustomParagraph from '../../../dsl/Paragraph/Paragraph'
-import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
+import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import Experience from '../../components/Experience/Experience'
 import Knowledge from '../../components/Knowledge/Knowledge'
 
 import { InformationViewProps, UseInformationViewProvides } from './Information.contracts'
-import { useSelector } from 'react-redux'
-import { AppReducers } from '../../../../core/store/reducers'
-import { DeviceType } from '../../../shared/store/contracts'
-import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
 
 /**
  * Information view logic

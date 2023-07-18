@@ -1,0 +1,21 @@
+
+.FullScreenLoader {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  z-index: calc(#{$z-index-fixed} * 2);
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba($white, 0.3);
+  backdrop-filter: blur(6px);
+
+  @include flex(column, center, center);
+  gap: rem(8px);
+
+  .CustomParagraph {
+    font-size: rem(14px);
+  }
+}

@@ -1,5 +1,5 @@
 
-import { AbstractViewProvidesOutput } from '../../../shared/abstract/view-meta'
+import { AbstractViewProvidesOutput } from '../../../shared/abstract/view'
 
 export interface WebDesignViewProps {}
 

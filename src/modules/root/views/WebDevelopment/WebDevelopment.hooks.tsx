@@ -5,19 +5,19 @@ import {
   exampleWebDevelopmentBrandsExperienceItems
 } from '../../../../dev-utils/faker/web-development.faker'
 
+import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
 import CustomHeading from '../../../dsl/Heading/Heading'
 import CustomButton from '../../../dsl/Button/Button'
 import CustomParagraph from '../../../dsl/Paragraph/Paragraph'
 import CustomCodeBlock from '../../../shared/components/CodeBlock/CodeBlock'
 import MacWindow from '../../../shared/components/MacWindow/MacWindow'
 import { MacWindowTheme } from '../../../shared/components/MacWindow'
-import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
+import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import FactsNumbers from '../../components/FactsNumbers/FactsNumbers'
 
 import { UseWebDevelopmentViewContentProvides, WebDevelopmentViewProps } from './WebDevelopment.contracts'
-import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
-import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
 
 /**
  * Web Development view logic

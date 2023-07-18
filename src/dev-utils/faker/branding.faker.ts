@@ -10,54 +10,36 @@ export const exampleBranding = (): BrandingItemsListProps => {
         caption: 'Wartość Dodane PODCAST',
         captionDetails: '(en. Add Value PODCAST)',
         image: require('../../assets/branding/wartosc-dodana-podcast.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       },
       {
         id: 'forpro-under-armour-rush',
         caption: 'ForPro Under Armour "Rush" Campaign Cover',
         image: require('../../assets/branding/under-armour-rush.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       },
       {
         id: 'forpro-adidad-worn-out-shoes',
         caption: 'ForPro Adidas "Worn-out Shoes Return" Campaign',
         image: require('../../assets/branding/worn-out-shoes.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       },
       {
         id: 'forpro-nike-react-flyknit',
         caption: 'ForPro Nike React Infinity Flyknit 2 Campaign',
         image: require('../../assets/branding/react-flyknit.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       },
       {
         id: 'forpro-back-to-school',
         caption: 'ForPro Back To School Campaign',
         image: require('../../assets/branding/back-to-school.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       },
       {
         id: 'photo-editorials',
         caption: 'Photo editorials',
         image: require('../../assets/branding/photo-editorials.jpg'),
-        targetLink: {
-          target: 'https://google.com' // TODO
-        },
         hasOwnPage: true
       }
     ]

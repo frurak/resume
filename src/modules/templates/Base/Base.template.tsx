@@ -1,13 +1,15 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Outlet, useParams } from 'react-router-dom'
 
 import Navbar from '../../shared/components/Navbar/Navbar'
 
-import { BaseTemplateProps } from './Base.contracts'
 import { PAGE_DEFAULT_META_DESCRIPTION, PAGE_DEFAULT_META_TITLE } from '../../root/contracts/routes.contracts'
 import DrawersWrapper from '../../shared/components/DrawersWrapper/DrawersWrapper'
 import Footer from '../../shared/components/Footer/Footer'
-import { Outlet, useParams } from 'react-router-dom'
+import FullScreenLoader from '../../shared/components/FullScreenLoader/FullScreenLoader'
+
+import { BaseTemplateProps } from './Base.contracts'
 
 /**
  * Base template
@@ -55,6 +57,7 @@ const BaseTemplate = (props: BaseTemplateProps) => {
       </div>
 
       <DrawersWrapper />
+      <FullScreenLoader />
     </div>
   )
 }

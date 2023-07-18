@@ -1,15 +1,15 @@
 import { IUserAgentService } from './contracts'
-import { AnyAction, Dispatch } from '@reduxjs/toolkit'
+import { Dispatch } from '@reduxjs/toolkit'
 import { setDevice } from '../../../modules/shared/store/slice'
 
 export default class UserAgentService implements IUserAgentService {
-  private readonly _dispatchStore?: Dispatch<AnyAction>
+  private readonly _dispatchStore?: Dispatch
 
   private readonly phoneQuery = matchMedia('(max-width: 768px)')
   private readonly tabletQuery = matchMedia('(min-width: 769px) and (max-width: 992px)')
   private readonly desktopQuery = matchMedia('(min-width: 993px)')
 
-  constructor (dispatch: Dispatch<AnyAction> | undefined) {
+  constructor (dispatch: Dispatch | undefined) {
     this._dispatchStore = dispatch
   }
 

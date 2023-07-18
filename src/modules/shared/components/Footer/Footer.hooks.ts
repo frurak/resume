@@ -1,4 +1,4 @@
-import { LINKEDIN_PROFILE_TARGET_URL } from '../../helpers/redirect-linkedin'
+import { LINKEDIN_PROFILE_TARGET_URL } from '../../helpers/events/redirect-linkedin'
 
 import { FooterProps, UseFooterContentProvides } from './Footer.contracts'
 

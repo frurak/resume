@@ -1,5 +1,5 @@
 import { DeviceType } from '../../../shared/store/contracts'
-import { AbstractViewProvidesOutput } from '../../../shared/abstract/view-meta'
+import { AbstractViewProvidesOutput } from '../../../shared/abstract/view'
 
 export interface WebDevelopmentViewProps {}
 

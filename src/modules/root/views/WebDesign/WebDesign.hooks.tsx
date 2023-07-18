@@ -9,8 +9,8 @@ import {
   DeviceMockUp
 } from '../../../shared/components/Device'
 import CustomParagraph from '../../../dsl/Paragraph/Paragraph'
-import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
-import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
+import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import DevicesCarousel from '../../components/DevicesCarousel/DevicesCarousel'
 import { DevicesCarouselProps } from '../../components/DevicesCarousel'

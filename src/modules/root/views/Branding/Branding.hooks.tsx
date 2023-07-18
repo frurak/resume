@@ -1,36 +1,19 @@
-import React from 'react'
-
-
-import { exampleBranding, exampleBrandingBrandsExperienceItems } from '../../../../dev-utils/faker/branding.faker'
+import React  from 'react'
 
 import CustomButton from '../../../dsl/Button/Button'
 import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
-import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/redirect-linkedin'
-import { useAbstractViewProvides } from '../../../shared/abstract/view-meta'
+import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
 
 import BrandingItemsList from '../../components/BrandingItemsList/BrandingItemsList'
 
-import { BrandingViewProps, UseBrandingViewProvides } from './Branding.contracts'
-
-/**
- * Branding view logic
- */
-export const useBrandingView = (props: BrandingViewProps): UseBrandingViewProvides => {
-  const { viewConfig, isDesktop, isTablet, isMobile } = useAbstractViewProvides()
-
-  // TODO: Remove me
-  const brandingItemsData = exampleBranding()
-  const brandsExperienceItems = exampleBrandingBrandsExperienceItems()
-  //
-
-  return { viewConfig, isDesktop, isTablet, isMobile, brandingItemsData, brandsExperienceItems }
-}
+import { BuildBrandingTemplateProps } from './Branding.contracts'
 
 /**
  * Builds template for view
  */
-export const buildBrandingTemplate = (props: UseBrandingViewProvides): React.ReactNode => {
-  const shouldRenderList = Array.isArray(props.brandingItemsData.items) && props.brandingItemsData.items.length > 0
+export const buildBrandingTemplate = (props: BuildBrandingTemplateProps): React.ReactNode => {
+  const pageContent = props.getPageContent()
+  const shouldRenderList = Array.isArray(pageContent.items) && pageContent.items.length > 0
 
   const onReachMeBtnClick = () => {
     if (props.eventBus) {
@@ -40,14 +23,14 @@ export const buildBrandingTemplate = (props: UseBrandingViewProvides): React.Rea
 
   return (
     <div className="BrandingView">
-      { shouldRenderList && <BrandingItemsList { ...props.brandingItemsData } />}
+      { shouldRenderList && <BrandingItemsList { ...pageContent } />}
 
       <CustomButton label={ 'Reach me out' }
                     classNames={['mt-5', props.isMobile ? 'w-100' : '']}
                     onClick={ onReachMeBtnClick } />
 
       <BrandsExperience heading="Brands Experience"
-                        items={ props.brandsExperienceItems } />
+                        items={ props.experienceItems } />
     </div>
   )
 }
