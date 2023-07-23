@@ -39,6 +39,10 @@ $hamburger-animation-duration: 0.3s;
     @include h4();
     font-weight: $font-weight-light;
 
+    &:hover {
+      text-decoration: none;
+    }
+
     @include media-breakpoint-down(md) {
       @include font-base();
     }
