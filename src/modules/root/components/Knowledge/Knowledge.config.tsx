@@ -54,20 +54,37 @@ export enum KnowledgeContext {
 }
 
 export enum OtherContextItemName {
-  SeoOptimization = 'seoOptimization',
+  // Ecommerce
   CMS = 'cms',
   GoogleAnalytics = 'googleAnalytics',
-  GoogleAds = 'googleAds',
-  FacebookAds = 'facebookAds',
-  GoogleMerchantCenter = 'googleMerchantCenter',
-  XmlProductFeeds = 'xmlProductFeeds',
   WebsiteAnalytics = 'websiteAnalytics',
   Magento = 'magento',
-  AdobePremierePro = 'adobePremierePro',
-  Criteo = 'criteo',
+  GoogleMerchantCenter = 'googleMerchantCenter',
+  XmlProductFeeds = 'xmlProductFeeds',
+  Dropshipping = 'dropshiping',
+  MarketingAutomation = 'marketingAutomation',
+  EcommerceUX = 'ecommerceUX',
+  Wordpress = 'wordpress',
+  PaymentGateways = 'paymentGateways',
+  DeliveryProviders = 'deliveryProviders',
+  EcommerceArchitecture = 'ecommerceArchitecture',
+
+  // Marketing
+  SeoOptimization = 'seoOptimization',
+  GoogleAds = 'googleAds',
+  FacebookAds = 'facebookAds',
   Awin = 'awin',
+  Criteo = 'criteo',
   Freshmail = 'freshmail',
-  Sendinblue = 'sendinblue'
+  Sendinblue = 'sendinblue',
+  Usercom = 'userCom',
+  Synerise = 'synerise',
+  DirectMailing = 'directMailing',
+  LandingPages = 'landingPages',
+  Events = 'events',
+
+  // Others
+  AdobePremierePro = 'adobePremierePro',
 }
 
 export enum ItemAlignment {
@@ -214,6 +231,41 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     context: KnowledgeContext.Ecommerce,
     alt: 'XML product feeds'
   },
+  [OtherContextItemName.Dropshipping]: {
+    content: 'Dropshipping',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Dropshipping | Dropshipping platforms'
+  },
+  [OtherContextItemName.MarketingAutomation]: {
+    content: 'Marketing automation',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Marketing automation'
+  },
+  [OtherContextItemName.EcommerceUX]: {
+    content: 'Online Store UX',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Ecommerce UX | UX'
+  },
+  [OtherContextItemName.Wordpress]: {
+    content: 'Wordpress',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Wordpress | Wordpress CMS'
+  },
+  [OtherContextItemName.PaymentGateways]: {
+    content: 'Payment gateways',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Payment gateways'
+  },
+  [OtherContextItemName.DeliveryProviders]: {
+    content: 'Delivery providers',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Delivery providers'
+  },
+  [OtherContextItemName.EcommerceArchitecture]: {
+    content: 'Technical Architecture',
+    context: KnowledgeContext.Ecommerce,
+    alt: 'Online Store Technical Architecture'
+  },
 
   // --------- Marketing
   [OtherContextItemName.SeoOptimization]: {
@@ -250,6 +302,21 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     content: 'Sendinblue',
     context: KnowledgeContext.Marketing,
     alt: 'Sendinblue | Sendinblue mailing campaigns'
+  },
+  [OtherContextItemName.Usercom]: {
+    content: 'User.com',
+    context: KnowledgeContext.Marketing,
+    alt: 'User.com | Marketing automation'
+  },
+  [OtherContextItemName.Synerise]: {
+    content: 'Synerise',
+    context: KnowledgeContext.Marketing,
+    alt: 'Synerise | Marketing automation'
+  },
+  [OtherContextItemName.Events]: {
+    content: 'Events',
+    context: KnowledgeContext.Marketing,
+    alt: 'Marketing events'
   },
 
   // --------- Others
