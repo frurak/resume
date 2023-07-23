@@ -57,6 +57,14 @@
     @include media-breakpoint-down(md) {
       @include font-base();
     }
+
+    a {
+      @include h4();
+
+      @include media-breakpoint-down(md) {
+        @include font-base();
+      }
+    }
   }
 
   &__toggler {

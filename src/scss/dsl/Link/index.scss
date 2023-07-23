@@ -1,10 +1,12 @@
 
-@use "../../variables";
+a {
+  color: $gray-1;
+}
 
 .CustomLink {
   @include font-base;
 
-  color: variables.$gray-main;
+  color: $gray-main;
 
   list-style-type: none;
   text-decoration: none;
