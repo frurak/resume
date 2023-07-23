@@ -1,36 +1,26 @@
 
 import React from 'react'
 
-import { exampleExperience } from '../../../../dev-utils/faker/experience.faker'
-
 import CustomButton from '../../../dsl/Button/Button'
 import CustomHeading from '../../../dsl/Heading/Heading'
 import CustomImage from '../../../dsl/Image/Image'
 import CustomParagraph from '../../../dsl/Paragraph/Paragraph'
 import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
-import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import Experience from '../../components/Experience/Experience'
 import Knowledge from '../../components/Knowledge/Knowledge'
 
-import { InformationViewProps, UseInformationViewProvides } from './Information.contracts'
-
-/**
- * Information view logic
- */
-export const useInformationView = (props: InformationViewProps): UseInformationViewProvides => {
-  const { viewConfig, isMobile, isTablet, isDesktop } = useAbstractViewProvides()
-
-  return { viewConfig, isMobile, isTablet, isDesktop }
-}
+import { UseInformationViewProvides } from './Information.contracts'
 
 /**
  * Builds template for view
  */
 export const buildInformationTemplate = (props: UseInformationViewProvides): React.ReactNode => {
+  // TODO: Move image to Firestore
   const headerImageSrc = require('../../../../assets/img/me.jpg')
-  // TODO: Remove me
-  const experienceData = exampleExperience()
+
+  const pageContent = props.getPageContent()
+  const shouldRenderExperience = pageContent && Array.isArray(pageContent.items) && pageContent.items.length > 0
 
   const onReachMeBtnClick = () => {
     if (props.eventBus) {
@@ -74,9 +64,11 @@ export const buildInformationTemplate = (props: UseInformationViewProvides): Rea
       </div>
 
       {/* Experience section */}
-      <div className="InformationView__experience-section">
-        <Experience { ...experienceData } />
-      </div>
+      { shouldRenderExperience &&
+        <div className="InformationView__experience-section">
+          <Experience { ...pageContent } />
+        </div>
+      }
 
       {/* Knowledge section */}
       <div className="InformationView__knowledge-section">

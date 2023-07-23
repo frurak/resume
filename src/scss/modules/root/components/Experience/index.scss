@@ -6,4 +6,8 @@
   @include media-breakpoint-down(md) {
     gap: $spacing-80;
   }
+
+  .ExperienceItem {
+    width: 100%;
+  }
 }

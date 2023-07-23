@@ -70,12 +70,12 @@ export class FirebaseService extends BaseFirebase implements IFirebaseService {
 
     const response = await getDoc(documentRef)
 
-    if (storeResults) {
+    if (storeResults && typeof response.data() !== 'undefined') {
       if (typeof this._store !== 'undefined') {
         this._store.dispatch(setFirebaseDocuments({
           collectionName: collectionName,
           documentName: documentName,
-          items: typeof response.data() !== 'undefined' ? response.data()?.items : []
+          ...response.data()
         }))
       }
     }

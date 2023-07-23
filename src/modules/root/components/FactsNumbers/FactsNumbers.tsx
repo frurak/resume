@@ -14,10 +14,10 @@ const FactsNumbers = (props: FactsNumbersProps) => {
 
   return (
     <div className="FactsNumbers">
-      { props.items.map((item, index) => (
+      { props.items && props.items.length > 0 && props.items.map((item, index) => (
         <div key={ index } className="FactsNumbers__item">
-          <CustomParagraph content={ item.heading } classNames={['item-heading h1']} />
-          <CustomParagraph content={ item.description } classNames={['item-description h4']} />
+          { item.heading && <CustomParagraph content={ item.heading } classNames={['item-heading h1']} /> }
+          { item.description && <CustomParagraph content={ item.description } classNames={['item-description h4']} /> }
         </div>
       )) }
     </div>

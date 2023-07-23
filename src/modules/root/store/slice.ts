@@ -19,18 +19,15 @@ const rootState = createSlice({
     },
     setFirebaseDocuments (state, action: PayloadAction<FirebaseDocumentsPayload>) {
       const foundCollection = state.firebaseDocuments[action.payload.collectionName]
-      const foundDocument = foundCollection ? foundCollection[action.payload.documentName] : undefined
 
-      const isFoundDocumentComplete = foundDocument && Array.isArray(foundDocument.items)
+      const { documentName, collectionName, ...unknownEntries } = action.payload
 
       state.firebaseDocuments = {
         ...state.firebaseDocuments,
         [action.payload.collectionName]: {
+          ...(foundCollection ?? []),
           [action.payload.documentName]: {
-            items: [
-              ...(isFoundDocumentComplete ? foundDocument.items : []),
-              ...action.payload.items
-            ]
+            ...unknownEntries
           }
         }
       }

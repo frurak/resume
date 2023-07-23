@@ -1,10 +1,5 @@
 import React from 'react'
 
-import {
-  exampleFactsNumbers,
-  exampleWebDevelopmentBrandsExperienceItems
-} from '../../../../dev-utils/faker/web-development.faker'
-
 import BrandsExperience from '../../../shared/components/BrandsExperience/BrandsExperience'
 import CustomHeading from '../../../dsl/Heading/Heading'
 import CustomButton from '../../../dsl/Button/Button'
@@ -13,20 +8,10 @@ import CustomCodeBlock from '../../../shared/components/CodeBlock/CodeBlock'
 import MacWindow from '../../../shared/components/MacWindow/MacWindow'
 import { MacWindowTheme } from '../../../shared/components/MacWindow'
 import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
-import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import FactsNumbers from '../../components/FactsNumbers/FactsNumbers'
 
-import { UseWebDevelopmentViewContentProvides, WebDevelopmentViewProps } from './WebDevelopment.contracts'
-
-/**
- * Web Development view logic
- */
-export const useWebDevelopmentView = (props: WebDevelopmentViewProps): UseWebDevelopmentViewContentProvides => {
-  const { viewConfig, isDesktop, isTablet, isMobile } = useAbstractViewProvides()
-
-  return { viewConfig, isDesktop, isTablet, isMobile }
-}
+import { UseWebDevelopmentViewContentProvides } from './WebDevelopment.contracts'
 
 export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentProvides) => {
   const onReachMeBtnClick = () => {
@@ -35,16 +20,10 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
     }
   }
 
-  // TODO: Remove me
-  const frontendText1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit dui eget odio maximus semper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam faucibus laoreet tellus, in lobortis nisi lacinia sit amet. Aliquam magna est, faucibus eget justo sed, varius lobortis nisi. In sed blandit dui.'
-  const frontendText2 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit dui eget odio maximus semper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam faucibus laoreet tellus, in lobortis nisi lacinia sit amet. Aliquam magna est, faucibus eget justo sed, varius lobortis nisi. In sed blandit dui.'
-
-  // TODO: Move to app config and add dynamic values
-  const facts = exampleFactsNumbers()
-
-  // TODO: Remove me
-  const brandsExperienceItems = exampleWebDevelopmentBrandsExperienceItems()
-
+  const descriptionOne = typeof props.getPageContent() !== 'undefined' ? props.getPageContent()!.descriptionOne : undefined
+  const descriptionTwo = typeof props.getPageContent() !== 'undefined' ? props.getPageContent()!.descriptionTwo : undefined
+  const numericalItems = typeof props.getPageContent() !== 'undefined' ? props.getPageContent()!.numerical : undefined
+  const brandsExperienceItems = typeof props.getPageContent() !== 'undefined' ? props.getPageContent()!.experienceItems : undefined
 
   const codeContent = `...
     public async removeFromCart (uid: string): Promise<void> {
@@ -53,7 +32,7 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
         }
 
         try {
-            const itemToRemove = this.cart?.items.find(item => item.uid === uid)
+            const itemToRemove = this.cart.items.find(item => item.uid === uid)
             const updatedCart = await this.cartService.removeFromCart(this.cartId, uid)
             
             if (itemToRemove) {
@@ -71,48 +50,62 @@ export const buildWebDevelopmentTemplate = (props: UseWebDevelopmentViewContentP
   return (
     <div className="WebDevelopmentView">
       {/*Frontend section*/}
-      <div className="WebDevelopmentView__frontend-section">
-        <div className="view-heading">
-          <CustomHeading content="Frontend Web Developer"
-                         classNames={['h1']} />
-          <CustomButton label={ 'Reach me out' }
-                        classNames={[props.isMobile ? 'w-100' : '']}
-                        onClick={ onReachMeBtnClick } />
-        </div>
+      { descriptionOne &&
+        <div className="WebDevelopmentView__frontend-section">
+          { descriptionOne.heading &&
+            <div className="view-heading">
+              <CustomHeading content={ descriptionOne.heading } classNames={['h1']} />
+              <CustomButton label={ 'Reach me out' }
+                            classNames={[props.isMobile ? 'w-100' : '']}
+                            onClick={ onReachMeBtnClick } />
+            </div>
+          }
 
-        <div className={`view-double-text-layout ${ props.isDesktop || props.isTablet ? 'justify' : '' }`}>
-          <CustomParagraph content={ frontendText1 } />
-          <CustomParagraph content={ frontendText2 } />
-        </div>
+          { (descriptionOne.descriptionLeft || descriptionOne.descriptionRight) &&
+            <div className={`view-double-text-layout ${ props.isDesktop || props.isTablet ? 'justify' : '' }`}>
+              { descriptionOne.descriptionLeft && <CustomParagraph content={ descriptionOne.descriptionLeft } /> }
+              { descriptionOne.descriptionRight && <CustomParagraph content={ descriptionOne.descriptionRight } /> }
+            </div>
+          }
 
-        <MacWindow content={ <CustomCodeBlock snippet={ codeContent } /> }
-                   contentPadding={ false }
-                   topText="modules/checkout/services/cart.service.ts" />
-      </div>
+          <MacWindow content={ <CustomCodeBlock snippet={ codeContent } /> }
+                     contentPadding={ false }
+                     topText="modules/checkout/services/cart.service.ts" />
+        </div>
+      }
 
       {/*Ecommerce section*/}
-      <div className="WebDevelopmentView__ecommerce-section">
-        <div className="view-heading">
-          <CustomHeading content="Ecommerce<br/>& Content Management"
-                         renderAsHtml={ true }
-                         classNames={['h1']} />
-        </div>
+      { descriptionTwo &&
+        <div className="WebDevelopmentView__ecommerce-section">
+          { descriptionTwo.heading &&
+            <div className="view-heading">
+              <CustomHeading content="Ecommerce<br/>& Content Management"
+                             renderAsHtml={ true }
+                             classNames={['h1']} />
+            </div>
+          }
 
-        <div className={`view-double-text-layout ${ props.isDesktop || props.isTablet ? 'justify' : '' }`}>
-          <CustomParagraph content={ frontendText1 } />
-          <CustomParagraph content={ frontendText2 } />
-        </div>
+          { (descriptionTwo.descriptionRight || descriptionTwo.descriptionLeft) &&
+            <div className={`view-double-text-layout ${ props.isDesktop || props.isTablet ? 'justify' : '' }`}>
+              { descriptionTwo.descriptionLeft && <CustomParagraph content={ descriptionTwo.descriptionLeft } /> }
+              { descriptionTwo.descriptionRight && <CustomParagraph content={ descriptionTwo.descriptionRight } /> }
+            </div>
+          }
 
-        <MacWindow content={ <FactsNumbers { ...facts } /> }
-                   theme={ MacWindowTheme.DarkReverse } />
-      </div>
+          { numericalItems &&
+            <MacWindow content={ <FactsNumbers { ...numericalItems } /> }
+                       theme={ MacWindowTheme.DarkReverse } />
+          }
+        </div>
+      }
 
       {/*Facts section*/}
       <div className="WebDevelopmentView__facts-section"></div>
 
       {/*Brands Experience section*/}
-      <BrandsExperience heading="Brands Experience"
-                        items={ brandsExperienceItems } />
+      { brandsExperienceItems &&
+        <BrandsExperience heading="Brands Experience" items={ brandsExperienceItems.items } />
+      }
     </div>
   )
 }

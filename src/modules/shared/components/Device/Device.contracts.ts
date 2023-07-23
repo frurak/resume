@@ -8,6 +8,7 @@ export interface DeviceProps {
   customElements?: Array<CustomElement>
   DOMRef?: React.MutableRefObject<any>
   DOMElStyles?: CSSProperties
+  order?: number
 }
 
 export interface UseDeviceContentProvides {

@@ -36,7 +36,7 @@ export const useDevicesCarousel = (
       return {
         width: containerWidth,
         offset: containerWidth - deviceWidth,
-        elementsCount: (isDesktop || isTablet) ? props.devices.desktop.length : props.devices.mobile.length
+        elementsCount: (isDesktop || isTablet) ? props.items.desktop.length : props.items.mobile.length
       }
     }
 
@@ -57,7 +57,7 @@ export const useDevicesCarousel = (
 
     _carouselScrollCount.current = _carouselScrollCount.current + (direction === CarouselNavi.Next ? 1 : -1)
 
-    if (_carouselScrollCount.current >= ((isDesktop || isTablet) ? props.devices.desktop.length : props.devices.mobile.length)) {
+    if (_carouselScrollCount.current >= ((isDesktop || isTablet) ? props.items.desktop.length : props.items.mobile.length)) {
       _carouselScrollCount.current = _carouselScrollCount.current - 1
       return
     }
@@ -79,7 +79,7 @@ export const useDevicesCarousel = (
    * @private
    */
   const _considerDisablingCarouselNavigation = (): void => {
-    if (_carouselScrollCount.current === ((isDesktop || isTablet) ? props.devices.desktop.length : props.devices.mobile.length) - 1) {
+    if (_carouselScrollCount.current === ((isDesktop || isTablet) ? props.items.desktop.length : props.items.mobile.length) - 1) {
       setIsNextNaviDisabled(true)
     }
     if (_carouselScrollCount.current === 0) {
@@ -89,8 +89,8 @@ export const useDevicesCarousel = (
 
   useEffect(() => {
     // FIXME: This doesnt work in mobile
-    setHasNavi(props.devices[(isDesktop || isTablet) ? DeviceMockUp.Desktop : DeviceMockUp.Mobile].length > 1)
-    setIsNextNaviDisabled(props.devices[(isDesktop || isTablet) ? DeviceMockUp.Desktop : DeviceMockUp.Mobile].length === 1)
+    setHasNavi(props.items[(isDesktop || isTablet) ? DeviceMockUp.Desktop : DeviceMockUp.Mobile].length > 1)
+    setIsNextNaviDisabled(props.items[(isDesktop || isTablet) ? DeviceMockUp.Desktop : DeviceMockUp.Mobile].length === 1)
 
     window.addEventListener('resize', () => {
       getCarouselWidth()

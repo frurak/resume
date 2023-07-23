@@ -45,12 +45,12 @@ const DevicesCarousel = (props: DevicesCarouselProps) => {
       }
 
       <div className="carousel-devices-wrapper"
-           style={{ width: getCarouselWidth() ? getCarouselWidth()!.width * props.devices[_device].length : '100%' }}>
+           style={{ width: getCarouselWidth() ? getCarouselWidth()!.width * props.items[_device].length : '100%' }}>
 
         <div className="carousel-devices-track"
              ref={ carouselElementsWrapperRef }>
-          { props.devices && props.devices[_device].length > 0 &&
-            props.devices[_device]
+          { props.items && props.items[_device].length > 0 &&
+            props.items[_device]
               .map((device, index) => (
                 <Device key={ index }
                         device={ _device }

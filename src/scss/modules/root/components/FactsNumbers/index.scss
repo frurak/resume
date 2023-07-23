@@ -20,6 +20,12 @@
     gap: 1rem;
     flex: 1;
 
+    text-align: center;
+
+    .item-heading {
+      white-space: nowrap;
+    }
+
     .item-description {
       color: $gray-1;
     }

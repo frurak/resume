@@ -29,7 +29,7 @@ const Footer = (props: FooterProps) => {
       <div className="Footer__copyrights">
         <CustomParagraph content="Filip Rurak 2023 © All rights reserved." classNames={['Footer__copyrights__claim']} />
         <div className="Footer__copyrights__tech-info">
-          <CustomParagraph content="Written with: TypeScript, React, Redux Toolkit, Firebase. See the" />&nbsp;
+          <CustomParagraph content="Written with: TypeScript, React, Firebase. See the" />&nbsp;
           <CustomLink label="codebase" target={ codebaseTarget } targetType={ RouteTargetType.External } />
         </div>
       </div>

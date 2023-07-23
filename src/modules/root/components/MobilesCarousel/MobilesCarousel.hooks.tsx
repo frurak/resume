@@ -1,6 +1,5 @@
 import { useInjection } from 'inversify-react'
 
-import { DeviceMockUp } from '../../../shared/components/Device'
 import { EventbusType, IEventBus } from '../../../../core/services/event-bus'
 import { useAbstractDeviceContentProvides } from '../../../shared/abstract/device'
 import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
@@ -21,32 +20,5 @@ export const useMobilesCarousel = (props: MobilesCarouselProps): UseMobilesCarou
     }
   }
 
-  const devices = [
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-3.jpg')
-    },
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-2.jpg')
-    },
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-1.jpg')
-    },
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-3.jpg')
-    },
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-2.jpg')
-    },
-    {
-      device: DeviceMockUp.Mobile,
-      image: require('../../../../assets/design/mobiles/restbill-1.jpg')
-    }
-  ]
-
-  return { isDesktop, isTablet, isMobile, devices, onReachMeBtnClick }
+  return { isDesktop, isTablet, isMobile, onReachMeBtnClick }
 }

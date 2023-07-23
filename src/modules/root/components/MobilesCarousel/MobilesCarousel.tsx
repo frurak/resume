@@ -13,9 +13,13 @@ import { useMobilesCarousel } from './MobilesCarousel.hooks'
  */
 const MobilesCarousel = (props: MobilesCarouselProps) => {
   const containerRef = useRef(null)
-  const { isDesktop, isTablet, isMobile, devices, onReachMeBtnClick } = useMobilesCarousel(props)
+  const { isDesktop, isTablet, isMobile, onReachMeBtnClick } = useMobilesCarousel(props)
 
-  const hasDevices = Array.isArray(devices) && devices.length > 0
+  const hasDevices = Array.isArray(props.items) && props.items.length > 0
+
+  const sortedDevices = hasDevices
+    ? props.items.sort((a, b) => (a.order && b.order) && a.order > b.order ? 1 : -1)
+    : []
 
   return (
     <div className="MobilesCarousel">
@@ -23,12 +27,12 @@ const MobilesCarousel = (props: MobilesCarouselProps) => {
            ref={ containerRef }>
         <div className="MobilesCarousel__inner">
           <div className="MobilesCarousel__devices">
-            { hasDevices && devices.map((device, index) => (
+            { hasDevices && sortedDevices.map((device, index) => (
               <Device key={ index } { ...device } />
             )) }
 
             <div className="MobilesCarousel__devices-background">
-              { hasDevices && devices.map((device, index) => (
+              { hasDevices && sortedDevices.map((device, index) => (
                 <Device key={ index } { ...device } />
               )) }
             </div>

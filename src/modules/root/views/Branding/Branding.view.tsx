@@ -1,78 +1,56 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useInjection } from 'inversify-react'
 
-import { exampleBrandingBrandsExperienceItems } from '../../../../dev-utils/faker/branding.faker'
 import { Collection, Document, ImageCatalog } from '../../../../core/firebase'
 import { EventbusType, IEventBus } from '../../../../core/services/event-bus'
 
 import BaseTemplate from '../../../templates/Base/Base.template'
-import { FirebaseDocuments, getFirebaseDocuments } from '../../../shared/helpers/firebase-get-document'
 import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
-import { BrandingItemData } from '../../components/BrandingItemsList'
+import { BrandingItemsListProps } from '../../components/BrandingItemsList'
 
 import { buildBrandingTemplate } from './Branding.hooks'
-import { BrandingViewProps } from './Branding.contracts'
+import { BrandingExperienceItems, BrandingViewPageContent, BrandingViewProps } from './Branding.contracts'
 
 /**
- * @see useBrandingView
+ * @see useAbstractViewProvides
  * @see BrandingViewProps
  */
 const BrandingView = (props: BrandingViewProps) => {
   const {
-    viewConfig, isDesktop, isTablet, isMobile, firebaseService,
-    hasCachedImages, hasCachedDocuments, fetchAndStoreImages, fetchAndStorePageContent, setLoading
+    viewConfig, isDesktop, isTablet, isMobile,
+    fetchAndStoreImages, fetchAndStoreMultiplePageContent, setLoading, retrieveDocumentFromState
   } = useAbstractViewProvides()
 
   const eventBus: IEventBus | undefined = useInjection(EventbusType)
 
-  // TODO: Move to firebase
-  const [experienceItems, setExperienceItems] = useState(exampleBrandingBrandsExperienceItems())
-
-  /** Prevents useEffect from fetching 2 times */
-  const imagesFetched = useRef(false)
-  const pageContentDocsFetched = useRef(false)
-
-  const _fetchAndStoreImages = async (): Promise<void> => {
-    if (fetchAndStoreImages) {
-      await fetchAndStoreImages(ImageCatalog.Branding)
-    }
+  const _initPage = async (): Promise<void> => {
+    await fetchAndStoreImages(ImageCatalog.Branding)
+    await fetchAndStoreMultiplePageContent([
+      {
+        collectionName: Collection.Branding,
+        documentName: Document.PageContent
+      },
+      {
+        collectionName: Collection.Branding,
+        documentName: Document.BrandsExperience
+      }
+    ])
   }
 
-  const _fetchAndStorePageContent = async (): Promise<void> => {
-    if (fetchAndStorePageContent) {
-      await fetchAndStorePageContent(Collection.Branding, Document.PageContent)
+  const getPageContent = (): BrandingViewPageContent => {
+    return {
+      brandingItems: retrieveDocumentFromState<BrandingItemsListProps>(Collection.Branding, Document.PageContent, ImageCatalog.Branding),
+      experienceItems: retrieveDocumentFromState<BrandingExperienceItems>(Collection.Branding, Document.BrandsExperience)
     }
   }
 
   useEffect(() => {
-    if (hasCachedImages && !hasCachedImages(ImageCatalog.Branding) && !imagesFetched.current) {
-      setLoading!(true)
-
-      _fetchAndStoreImages()
-        .finally(() => setLoading!(false))
-
-      imagesFetched.current = true
-    }
-
-    if (hasCachedDocuments && !hasCachedDocuments(Collection.Branding, Document.PageContent) && !pageContentDocsFetched.current) {
-      setLoading!(true)
-
-      _fetchAndStorePageContent()
-        .finally(() => setLoading!(false))
-
-      pageContentDocsFetched.current = true
-    }
+    setLoading!(true)
+    _initPage()
+      .catch((e: Error) => console.error(e.message))
+      .finally(() => setLoading!(false))
   }, [])
-
-  const getPageContent = (): FirebaseDocuments<Array<BrandingItemData>> => {
-    return getFirebaseDocuments<Array<BrandingItemData>>(
-      firebaseService,
-      Collection.Branding,
-      Document.PageContent,
-      ImageCatalog.Branding
-    )
-  }
 
   const slots = {
     main: {
@@ -81,7 +59,6 @@ const BrandingView = (props: BrandingViewProps) => {
         isDesktop,
         isTablet,
         isMobile,
-        experienceItems,
         getPageContent
       }),
       classNames: ['container']

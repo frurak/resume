@@ -47,10 +47,20 @@ export interface FirebaseConfig {
 }
 
 export enum Collection {
-  Branding = 'branding'
+  Branding = 'branding',
+  Information = 'information',
+  WebDesign = 'web-design',
+  WebDevelopment = 'web-development'
 }
 
 export enum Document {
+  BrandsExperience = 'brands-experience',
+  UiCarousel = 'ui-carousel',
+  DescriptiveOne = 'descriptive-one',
+  DescriptiveTwo = 'descriptive-two',
+  MobilesCarousel = 'mobiles-carousel',
+  Mockups = 'mockups',
+  Numerical = 'numerical',
   PageContent = 'page-content'
 }
 

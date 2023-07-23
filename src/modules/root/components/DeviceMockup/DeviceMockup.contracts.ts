@@ -1,10 +1,13 @@
 
 import React from 'react'
 
-import { DeviceType } from '../../../shared/store/contracts'
 import { CustomElement } from '../../../shared/components/Device'
+import { DeviceType } from '../../../shared/store/contracts'
+import { PageDescriptiveContent } from '../../../contracts/page'
 
-export interface DeviceMockupProps {}
+export interface DeviceMockupProps {
+  description: PageDescriptiveContent
+}
 
 export interface UseDeviceMockupContentProvides extends DeviceType {
   customElements: Array<CustomElement>

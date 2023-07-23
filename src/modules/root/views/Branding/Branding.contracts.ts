@@ -1,15 +1,21 @@
 
 import { IEventBus } from '../../../../core/services/event-bus'
 
+import { BrandsExperienceProps } from '../../../shared/components/BrandsExperience'
 import { DeviceType } from '../../../shared/store/contracts'
-import { FirebaseDocuments } from '../../../shared/helpers/firebase-get-document'
+import { PageContent } from '../../../contracts/page'
 
-import { BrandingItemData } from '../../components/BrandingItemsList'
+import { BrandingItemsListProps } from '../../components/BrandingItemsList'
 
 export interface BrandingViewProps {}
 
-export interface BuildBrandingTemplateProps extends DeviceType {
+export interface BuildBrandingTemplateProps extends DeviceType, PageContent<BrandingViewPageContent> {
   eventBus?: IEventBus
-  experienceItems: any[]
-  getPageContent: () => FirebaseDocuments<Array<BrandingItemData>>
 }
+
+export interface BrandingViewPageContent {
+  experienceItems?: Pick<BrandsExperienceProps, 'items'>
+  brandingItems?: BrandingItemsListProps
+}
+
+export type BrandingExperienceItems = Pick<BrandsExperienceProps, 'items'>

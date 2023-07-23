@@ -6,7 +6,7 @@ import { UseAbstractDeviceContentProvides } from '../../../shared/abstract/devic
 import { CarouselWidthData } from '../../views/WebDesign/WebDesign.contracts'
 
 export interface DevicesCarouselProps {
-  devices: DevicesResponsive<Array<Omit<DeviceProps, 'device'>>>
+  items: DevicesResponsive<Array<Omit<DeviceProps, 'device'>>>
 }
 
 export interface DevicesResponsive<Type> {

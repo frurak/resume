@@ -13,7 +13,8 @@ import { BuildBrandingTemplateProps } from './Branding.contracts'
  */
 export const buildBrandingTemplate = (props: BuildBrandingTemplateProps): React.ReactNode => {
   const pageContent = props.getPageContent()
-  const shouldRenderList = Array.isArray(pageContent.items) && pageContent.items.length > 0
+  const hasBrandingItems = pageContent && pageContent.brandingItems && Array.isArray(pageContent.brandingItems.items) && pageContent.brandingItems.items.length > 0
+  const hasExperienceItems = pageContent && pageContent.experienceItems && Array.isArray(pageContent.experienceItems.items) && pageContent.experienceItems.items.length > 0
 
   const onReachMeBtnClick = () => {
     if (props.eventBus) {
@@ -23,14 +24,16 @@ export const buildBrandingTemplate = (props: BuildBrandingTemplateProps): React.
 
   return (
     <div className="BrandingView">
-      { shouldRenderList && <BrandingItemsList { ...pageContent } />}
+      { hasBrandingItems && <BrandingItemsList { ...pageContent!.brandingItems! } />}
 
       <CustomButton label={ 'Reach me out' }
                     classNames={['mt-5', props.isMobile ? 'w-100' : '']}
                     onClick={ onReachMeBtnClick } />
 
-      <BrandsExperience heading="Brands Experience"
-                        items={ props.experienceItems } />
+      { hasExperienceItems &&
+        <BrandsExperience heading="Brands Experience"
+                          items={ pageContent.experienceItems!.items } />
+      }
     </div>
   )
 }

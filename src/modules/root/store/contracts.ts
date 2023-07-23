@@ -9,18 +9,14 @@ export type FirebaseStoredDocuments = Record<CollectionName, Record<DocumentName
 
 export type CollectionName = string
 export type DocumentName = string
+export type FirebaseDocument = Record<string, unknown>
 
 export interface StorageImagesUrls {
   catalog: string
   items: Array<string>
 }
 
-export interface FirebaseDocument {
-  items: Array<unknown>
-}
-
-export interface FirebaseDocumentsPayload {
+export interface FirebaseDocumentsPayload extends FirebaseDocument {
   collectionName: string
   documentName: string
-  items: Array<unknown>
 }
