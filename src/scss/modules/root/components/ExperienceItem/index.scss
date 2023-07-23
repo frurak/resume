@@ -52,7 +52,7 @@
   }
 
   &__description {
-    @include h3();
+    @include h4();
 
     @include media-breakpoint-down(md) {
       @include font-base();

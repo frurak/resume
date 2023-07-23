@@ -5,6 +5,7 @@ import CustomLink from '../../../../dsl/Link/Link'
 import { RouteTargetType } from '../../../contracts/routes.contracts'
 import CustomParagraph from '../../../../dsl/Paragraph/Paragraph'
 import CustomHeading from '../../../../dsl/Heading/Heading'
+import HtmlMarkupComponent from '../../../../shared/abstract/html-markup-component'
 
 const CustomExperienceItem = (props: ExperienceItem) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -27,12 +28,18 @@ const CustomExperienceItem = (props: ExperienceItem) => {
                        level="h4" />
       </div>
 
-      <div className="ExperienceItem__description">
-        { props.description }
-        { !!props.descriptionExpanded && isExpanded && <div className="ExperienceItem__description-extended mt-4">{ props.descriptionExpanded }</div>}
-      </div>
+      { props.description &&
+        <div className="ExperienceItem__description">
+          <HtmlMarkupComponent content={ props.description } tagType="span" />
+          { !!props.descriptionExpanded && isExpanded &&
+            <HtmlMarkupComponent content={ props.descriptionExpanded } tagType="div" classNames={['ExperienceItem__description-extended', 'mt-4']} />
+          }
+        </div>
+      }
 
-      <button className="ExperienceItem__toggler" onClick={ toggleDescription }>{ isExpanded ? 'See less' : 'See more' }</button>
+      { props.descriptionExpanded &&
+        <button className="ExperienceItem__toggler" onClick={ toggleDescription }>{ isExpanded ? 'See less' : 'See more' }</button>
+      }
 
       { !!props.hasDivider && <hr /> }
     </div>
