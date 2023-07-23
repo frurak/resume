@@ -16,16 +16,20 @@ const CustomExperienceItem = (props: ExperienceItem) => {
 
   return (
     <div className="ExperienceItem">
-      <CustomLink label={ <CustomHeading content={ props.companyName } /> }
-                  target={ props.companyWebsitePath }
-                  targetType={ RouteTargetType.External }
-                  customClasses={['ExperienceItem__company']} />
+      { props.companyName &&
+        <CustomLink label={ <CustomHeading content={ props.companyName } /> }
+                    target={ props.companyWebsitePath }
+                    targetType={ RouteTargetType.External }
+                    customClasses={['ExperienceItem__company']} />
+      }
 
       <div className="ExperienceItem__details">
-        <CustomParagraph content={ `${ props.dateFrom } - ${props.dateTo}` } />
+        { props.dateFrom && props.dateTo && <CustomParagraph content={ `${ props.dateFrom } - ${props.dateTo}` } /> }
         <span className="vertical-divider">|</span>
-        <CustomHeading content={ props.roles.join(', ') }
-                       level="h4" />
+        { props.roles &&
+          <CustomHeading content={ props.roles.join(', ') }
+                         level="h4" />
+        }
       </div>
 
       { props.description &&
