@@ -103,7 +103,9 @@ export default class DrawersConnector implements IDrawersConnector {
     if (typeof window !== 'undefined') {
       const scrollY = window.scrollY
       document.body.style.position = 'fixed';
+      document.body.style.left = '0';
       document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
     }
   }
 
@@ -114,7 +116,9 @@ export default class DrawersConnector implements IDrawersConnector {
     if (typeof window !== 'undefined') {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
+      document.body.style.left = '';
       document.body.style.top = '';
+      document.body.style.width = '';
       window.scrollTo({
         left: 0,
         top: parseInt(scrollY || '0') * -1
