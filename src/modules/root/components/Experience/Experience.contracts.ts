@@ -17,4 +17,5 @@ export interface ExperienceItem {
   hasDivider?: boolean
   id: string
   roles: Array<string>
+  order?: number
 }
