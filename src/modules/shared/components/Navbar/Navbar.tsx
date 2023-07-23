@@ -3,6 +3,7 @@ import React  from 'react'
 import CustomLink from '../../../dsl/Link/Link'
 
 import { NavbarProps, useNavbar } from './index'
+import { RouteTargetType } from '../../../root/contracts/routes.contracts'
 
 /**
  * @see useNavbar
@@ -13,7 +14,10 @@ const Navbar = (props: NavbarProps) => {
 
   return (
     <nav className="Navbar container">
-      <p className="Navbar__mark">Filip Rurak | Selected Work</p>
+      <CustomLink label="Filip Rurak | Selected Work"
+                  target="/"
+                  targetType={ RouteTargetType.Internal }
+                  customClasses={['Navbar__mark']} />
 
       { isDesktop &&
         <ul className="Navbar__list">
