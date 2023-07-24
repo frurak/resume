@@ -5,9 +5,11 @@ import CustomButton from '../../../dsl/Button/Button'
 import CustomHeading from '../../../dsl/Heading/Heading'
 import CustomImage from '../../../dsl/Image/Image'
 import CustomParagraph from '../../../dsl/Paragraph/Paragraph'
+import { MacWindowProps, MacWindowTheme } from '../../../shared/components/MacWindow'
 import { REDIRECT_LINKED_IN_EVENT } from '../../../shared/helpers/events/redirect-linkedin'
 
 import Experience from '../../components/Experience/Experience'
+import FactsNumbers from '../../components/FactsNumbers/FactsNumbers'
 import Knowledge from '../../components/Knowledge/Knowledge'
 
 import { UseInformationViewProvides } from './Information.contracts'
@@ -20,7 +22,13 @@ export const buildInformationTemplate = (props: UseInformationViewProvides): Rea
   const headerImageSrc = require('../../../../assets/img/me.jpg')
 
   const pageContent = props.getPageContent()
-  const shouldRenderExperience = pageContent && Array.isArray(pageContent.items) && pageContent.items.length > 0
+  const shouldRenderExperience = pageContent && pageContent.experienceItems && Array.isArray(pageContent.experienceItems.items) && pageContent.experienceItems.items.length > 0
+  const shouldRenderDetailsWindow = pageContent && pageContent.numerical && Array.isArray(pageContent.numerical.items) && pageContent.numerical.items.length > 0
+
+  const experienceDetailsWindow: MacWindowProps | undefined = shouldRenderDetailsWindow ? {
+    content: <FactsNumbers { ...pageContent.numerical! } />,
+    theme: MacWindowTheme.DarkReverse
+  } : undefined
 
   const onReachMeBtnClick = () => {
     if (props.eventBus) {
@@ -66,7 +74,7 @@ export const buildInformationTemplate = (props: UseInformationViewProvides): Rea
       {/* Experience section */}
       { shouldRenderExperience &&
         <div className="InformationView__experience-section">
-          <Experience { ...pageContent } />
+          <Experience items={ pageContent.experienceItems!.items } detailsWindow={ experienceDetailsWindow } />
         </div>
       }
 

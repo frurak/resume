@@ -19,6 +19,7 @@ export const firebaseAppConfig = {
     'branding/brands-experience',
     'information/page-content',
     'information/brands-experience',
+    'information/numerical',
     'web-design/descriptive-one',
     'web-design/descriptive-two',
     'web-design/mockups',

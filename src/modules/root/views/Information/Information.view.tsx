@@ -9,8 +9,9 @@ import { useAbstractViewProvides } from '../../../shared/abstract/view'
 
 import { ExperienceProps } from '../../components/Experience'
 
-import { InformationViewProps } from './Information.contracts'
+import { InformationViewPageContent, InformationViewProps } from './Information.contracts'
 import { buildInformationTemplate } from './Information.hooks'
+import { FactsNumbersProps } from '../../components/FactsNumbers'
 
 /**
  * @see useAbstractViewProvides
@@ -19,17 +20,29 @@ import { buildInformationTemplate } from './Information.hooks'
 const InformationView = (props: InformationViewProps) => {
   const {
     viewConfig, isDesktop, isTablet, isMobile,
-    fetchAndStorePageContent, setLoading, retrieveDocumentFromState
+    fetchAndStoreMultiplePageContent, setLoading, retrieveDocumentFromState
   } = useAbstractViewProvides()
 
   const eventBus: IEventBus | undefined = useInjection(EventbusType)
 
   const _initPage = async (): Promise<void> => {
-    await fetchAndStorePageContent(Collection.Information, Document.PageContent)
+    await fetchAndStoreMultiplePageContent([
+      {
+        collectionName: Collection.Information,
+        documentName: Document.PageContent
+      },
+      {
+        collectionName: Collection.Information,
+        documentName: Document.Numerical
+      }
+    ])
   }
 
-  const getPageContent = () => {
-    return retrieveDocumentFromState<ExperienceProps>(Collection.Information, Document.PageContent)
+  const getPageContent = (): InformationViewPageContent => {
+    return {
+      experienceItems: retrieveDocumentFromState<ExperienceProps>(Collection.Information, Document.PageContent),
+      numerical: retrieveDocumentFromState<FactsNumbersProps>(Collection.Information, Document.Numerical)
+    }
   }
 
   useEffect(() => {

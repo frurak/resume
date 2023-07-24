@@ -1,10 +1,14 @@
 
+import { MacWindowProps } from '../../../shared/components/MacWindow'
+
 export interface ExperienceProps {
+  detailsWindow?: MacWindowProps
   items: Array<ExperienceItem>
 }
 
 export interface UseExperienceContentProvides {
-
+  hasItems: boolean
+  sortedItems: Array<ExperienceItem>
 }
 
 export interface ExperienceItem {

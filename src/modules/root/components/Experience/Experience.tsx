@@ -1,27 +1,24 @@
+import React from 'react'
+
+import CustomHeading from '../../../dsl/Heading/Heading'
+import MacWindow from '../../../shared/components/MacWindow/MacWindow'
+
+import CustomExperienceItem from './partials/ExperienceItem'
 import { ExperienceProps } from './Experience.contracts'
 import { useExperience } from './Experience.hooks'
-import CustomExperienceItem from './partials/ExperienceItem'
-import CustomHeading from '../../../dsl/Heading/Heading'
 
 /**
  * @see useExperience
  * @see ExperienceProps
  */
 export const Experience = (props: ExperienceProps) => {
-  const {} = useExperience(props)
-
-  const hasItems = Array.isArray(props.items) && props.items.length > 0
-  const canSort = hasItems ? props.items.every(item => !!item.order) : false
-  const sortedItems = canSort
-    ? [...props.items]
-        .sort((a, b) => {
-          return Number(a.order!) > Number(b.order!) ? 1 : -1
-        })
-    : props.items
+  const { hasItems, sortedItems } = useExperience(props)
 
   return (
     <div className="Experience">
       <CustomHeading content="Experience" classNames={['h1']} />
+      { !!props.detailsWindow && <MacWindow { ...props.detailsWindow } /> }
+
       { hasItems &&
         sortedItems.map((item, index) => (
           <CustomExperienceItem key={ item.id }
