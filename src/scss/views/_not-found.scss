@@ -1,0 +1,34 @@
+
+.NotFoundView {
+  &__navigation-wrapper {
+    height: $navigation-wrapper-height;
+
+    @include blur(0.7, 0.4);
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $z-index-fixed;
+
+    @include media-breakpoint-down(md) {
+      height: $navigation-wrapper-height-mobile;
+
+      @include blur(0.6, 0.6);
+    }
+  }
+
+  &__footer-wrapper {
+    //background: $gray-3;
+    @include blur(0, 1);
+  }
+
+  &__content {
+    margin-top: $spacing-200;
+    min-height: 60vh;
+
+    @include media-breakpoint-down(md) {
+      margin-top: $spacing-140;
+    }
+  }
+}
