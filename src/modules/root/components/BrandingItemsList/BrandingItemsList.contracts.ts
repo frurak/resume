@@ -12,6 +12,7 @@ export interface BrandingItemData {
   image: string
   hasOwnPage?: boolean
   targetLink?: Pick<LinkProps, 'target'>
+  order?: number
 }
 
 export interface UseBrandingItemsListContentProvides {

@@ -16,6 +16,16 @@ export const buildBrandingTemplate = (props: BuildBrandingTemplateProps): React.
   const hasBrandingItems = pageContent && pageContent.brandingItems && Array.isArray(pageContent.brandingItems.items) && pageContent.brandingItems.items.length > 0
   const hasExperienceItems = pageContent && pageContent.experienceItems && Array.isArray(pageContent.experienceItems.items) && pageContent.experienceItems.items.length > 0
 
+  const _canSort = hasBrandingItems ? pageContent!.brandingItems!.items.every(item => !!item.order) : false
+  const sortedBrandingItems = _canSort
+    ? {
+      items: [...pageContent!.brandingItems!.items]
+        .sort((a, b) => {
+          return Number(a.order!) > Number(b.order!) ? 1 : -1
+        })
+    }
+    : pageContent!.brandingItems
+
   const onReachMeBtnClick = () => {
     if (props.eventBus) {
       props.eventBus.$on(REDIRECT_LINKED_IN_EVENT, null)
@@ -24,7 +34,7 @@ export const buildBrandingTemplate = (props: BuildBrandingTemplateProps): React.
 
   return (
     <div className="BrandingView">
-      { hasBrandingItems && <BrandingItemsList { ...pageContent!.brandingItems! } />}
+      { hasBrandingItems && <BrandingItemsList { ...sortedBrandingItems! } />}
 
       <CustomButton label={ 'Reach me out' }
                     classNames={['mt-5', props.isMobile ? 'w-100' : '']}
