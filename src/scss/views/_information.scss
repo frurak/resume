@@ -76,6 +76,16 @@
     @include media-breakpoint-down(md) {
       margin-top: $spacing-80;
     }
+
+    .MacWindow {
+      .FactsNumbers {
+        @include flex(row, flex-start, space-between);
+
+        @include media-breakpoint-down(md) {
+          @include flex(column, center, space-between);
+        }
+      }
+    }
   }
 
   &__knowledge-section {
