@@ -15,11 +15,14 @@ const MobilesCarousel = (props: MobilesCarouselProps) => {
   const containerRef = useRef(null)
   const { isDesktop, isTablet, isMobile, onReachMeBtnClick } = useMobilesCarousel(props)
 
-  const hasDevices = Array.isArray(props.items) && props.items.length > 0
-
-  const sortedDevices = hasDevices
-    ? props.items.sort((a, b) => (a.order && b.order) && a.order > b.order ? 1 : -1)
-    : []
+  const hasItems = Array.isArray(props.items) && props.items.length > 0
+  const canSort = hasItems ? props.items.every(item => !!item.order) : false
+  const sortedItems = canSort
+    ? [...props.items]
+      .sort((a, b) => {
+        return Number(a.order!) < Number(b.order!) ? 1 : -1
+      })
+    : props.items
 
   return (
     <div className="MobilesCarousel">
@@ -27,12 +30,12 @@ const MobilesCarousel = (props: MobilesCarouselProps) => {
            ref={ containerRef }>
         <div className="MobilesCarousel__inner">
           <div className="MobilesCarousel__devices">
-            { hasDevices && sortedDevices.map((device, index) => (
+            { hasItems && sortedItems.map((device, index) => (
               <Device key={ index } { ...device } />
             )) }
 
             <div className="MobilesCarousel__devices-background">
-              { hasDevices && sortedDevices.map((device, index) => (
+              { hasItems && sortedItems.map((device, index) => (
                 <Device key={ index } { ...device } />
               )) }
             </div>
