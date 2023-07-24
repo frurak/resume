@@ -103,12 +103,12 @@ export const toolsKnowledgeRegistry: Record<string, ToolData> = {
     context: KnowledgeContext.Coding,
     alt: 'Frontend developer | Web developer | React.js'
   },
-  [ToolName.NextJs]: {
-    alignment: ItemAlignment.Horizontal,
-    content: <NextJs />,
-    context: KnowledgeContext.Coding,
-    alt: 'Frontend developer | Web developer | Next.js'
-  },
+  // [ToolName.NextJs]: {
+  //   alignment: ItemAlignment.Horizontal,
+  //   content: <NextJs />,
+  //   context: KnowledgeContext.Coding,
+  //   alt: 'Frontend developer | Web developer | Next.js'
+  // },
   [ToolName.TS]: {
   content: <TS />,
     context: KnowledgeContext.Coding,
