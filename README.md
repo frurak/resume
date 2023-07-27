@@ -1,6 +1,6 @@
 # Hi Stranger :)
 
-I'm glad that you made here!<br/>
+I'm glad that you made here! If you haven't been to my website I encourage you to do that: https://bit.ly/rurak-filip<br/>
 Feel free to look around and if anything catches your attention do not hesitate to reach me out.
 
 email: [rurakfil@gmail.com](mailto:rurakfil@gmail.com)<br/>
